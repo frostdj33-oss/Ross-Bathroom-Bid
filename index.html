@@ -456,7 +456,7 @@ function addCustomItem(){customCount++;const id='custom-'+customCount;const opts
 function removeCustomItem(id){const el=document.getElementById(id);if(el){el.remove();updateGrandTotal();}}
 function calcCustomRow(t){const row=t.closest('.custom-pricing-row');if(!row)return;const q=parseFloat(row.querySelector('[data-role="qty"]').value)||0;const u=parseFloat(row.querySelector('[data-role="unit"]').value)||0;row.querySelector('[data-role="total"]').textContent='$'+(q*u).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});updateGrandTotal();}
 let currentLang='en';
-function setLang(lang){currentLang=lang;document.getElementById('btn-en').classList.toggle('active',lang==='en');document.getElementById('btn-es').classList.toggle('active',lang==='es');}
+function setLang(lang){currentLang=lang;document.getElementById('btn-en').classList.toggle('active',lang==='en');document.getElementById('btn-es').classList.toggle('active',lang==='es');document.querySelectorAll('[data-en]').forEach(el=>{if(el.tagName==='INPUT'||el.tagName==='SELECT'||el.tagName==='TEXTAREA')return;const v=el.getAttribute('data-'+lang);if(v!==null)el.innerHTML=v;});}
 function closeJump(){document.getElementById('jumpDrop').classList.remove('open');}
 document.addEventListener('click',e=>{const d=document.getElementById('jumpDrop');if(d&&!d.contains(e.target))d.classList.remove('open');});
 function fmtN(n){return '$'+n.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});}
@@ -518,24 +518,3 @@ function generateBidPDF(){
 }
 </script></body>
 </html>
-<script>
-// EN/ES TOGGLE FIX
-let currentLang='en';
-function setLang(lang){
-  currentLang=lang;
-  document.getElementById('btn-en').classList.toggle('active',lang==='en');
-  document.getElementById('btn-es').classList.toggle('active',lang==='es');
-  document.querySelectorAll('[data-en]').forEach(el=>{
-    if(el.tagName==='INPUT'||el.tagName==='SELECT'||el.tagName==='TEXTAREA')return;
-    const v=el.getAttribute('data-'+lang);
-    if(v!==null)el.innerHTML=v;
-  });
-  document.querySelectorAll('.cat-select').forEach(sel=>{
-    const CATS_EN=['Demo / Removal','GC Fee','Permit','Inspection','Design Fee','Contingency','Delivery / Freight','Dumpster / Disposal','Painting','Rough Plumbing','Rough Electrical','Rough Framing','Other'];
-    const CATS_ES=['Demolición / Remoción','Honorario CG','Permiso','Inspección','Honorario de Diseño','Contingencia','Entrega / Flete','Contenedor / Desecho','Pintura','Plomería Gruesa','Electricidad Gruesa','Enmarcado Grueso','Otro'];
-    const current=sel.value;
-    sel.innerHTML=(lang==='en'?CATS_EN:CATS_ES).map(c=>`<option>${c}</option>`).join('');
-    sel.value=current;
-  });
-}
-</script>
