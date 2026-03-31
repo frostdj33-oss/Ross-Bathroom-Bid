@@ -96,7 +96,12 @@ main{max-width:860px;margin:0 auto;padding:0 16px 40px;}
 .gt-final{display:flex;justify-content:space-between;align-items:center;padding:16px 24px;background:var(--surface);border-top:2px solid var(--brass);}
 .gt-final-label{font-family:'Cormorant Garamond',serif;font-size:20px;color:var(--ink);}
 .gt-final-val{font-size:24px;font-weight:500;color:var(--brass);}
-.bottom-bar{max-width:860px;margin:28px auto 60px;padding:0 16px;display:flex;justify-content:flex-end;}
+.excl-wrap{max-width:860px;margin:28px auto 0;padding:0 16px;}
+.excl-box{background:var(--surface);border:1px solid var(--border-bright);border-radius:8px;padding:20px 24px;margin-bottom:0;}
+.excl-lbl{font-size:9px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--brass);margin-bottom:8px;}
+.excl-ta{background:var(--input-bg);border:1px solid var(--input-border);border-radius:4px;color:var(--ink);font-family:'DM Sans',sans-serif;font-size:12.5px;padding:9px 12px;width:100%;resize:vertical;min-height:80px;line-height:1.55;}
+.excl-ta:focus{outline:none;border-color:var(--brass-dim);}
+.bottom-bar{max-width:860px;margin:20px auto 60px;padding:0 16px;display:flex;justify-content:flex-end;}
 .dl-btn{display:inline-flex;align-items:center;gap:8px;background:var(--brass);color:#0e0c08;border:none;border-radius:6px;padding:13px 28px;font-size:13px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;font-family:'DM Sans',sans-serif;transition:background .2s,transform .1s;box-shadow:0 4px 20px rgba(196,151,63,.3);}
 .dl-btn:hover{background:var(--brass-light);transform:translateY(-1px);}
 footer{background:var(--surface);border-top:1px solid var(--border-bright);color:var(--ink-faint);text-align:center;padding:24px;font-size:11.5px;}
@@ -105,32 +110,38 @@ footer strong{color:var(--brass);}
 @media print{
 @page{margin:.6in .5in;size:letter;}
 *{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
-header,.nav-bar,main,.bottom-bar,footer{display:none!important;}
+header,.nav-bar,main,.excl-wrap,.bottom-bar,footer{display:none!important;}
 #bid-pdf{display:block!important;}
 body{background:#fff!important;color:#111!important;font-family:'DM Sans',sans-serif;font-size:10pt;line-height:1.4;}
 .pdf-header{border-bottom:3pt solid #b5863a;padding-bottom:14pt;margin-bottom:12pt;}
 .pdf-title{font-size:18pt;font-weight:700;color:#b5863a;letter-spacing:.14em;text-transform:uppercase;}
 .pdf-company{font-size:14pt;font-weight:500;color:#111;margin-top:2pt;}
 .pdf-meta{display:flex;gap:32pt;margin-top:8pt;font-size:9pt;color:#555;}
-.pdf-meta span{font-weight:600;color:#111;}
 .pdf-info-tbl{width:100%;border-collapse:collapse;font-size:9pt;margin-bottom:14pt;margin-top:10pt;}
 .pdf-info-tbl th{background:#f0ede4;color:#b5863a;font-size:8pt;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:5pt 8pt;border:1pt solid #ccc;text-align:left;}
 .pdf-info-tbl td{border:1pt solid #ccc;padding:5pt 8pt;color:#111;}
 .pdf-line-tbl{width:100%;border-collapse:collapse;font-size:9pt;}
-.pdf-line-tbl .ch{background:#f0ede4;}
-.pdf-line-tbl .ch th{font-size:8pt;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#b5863a;padding:5pt 7pt;border:1pt solid #ccc;text-align:left;}
+.pdf-line-tbl .ch th{font-size:8pt;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#b5863a;padding:5pt 7pt;border:1pt solid #ccc;text-align:left;background:#f0ede4;}
 .pdf-line-tbl .ch th.r{text-align:right;}
 .pdf-dh td{background:#f7f5f0;font-size:9.5pt;font-weight:700;color:#7a5c28;padding:6pt 8pt;border-top:2pt solid #b5863a;border-bottom:1pt solid #ddd;}
 .pdf-sc td{font-size:8.5pt;color:#555;padding:2pt 8pt 2pt 18pt;border-bottom:1pt solid #f0ede4;}
 .pdf-sc td::before{content:'• ';}
 .pdf-ir td{border-top:1pt dashed #ddd;border-bottom:1pt solid #ccc;padding:5pt 7pt;vertical-align:middle;}
-.pdf-ir .cat{font-size:8pt;font-weight:600;color:#b5863a;text-transform:uppercase;letter-spacing:.05em;}
+.pdf-ir .cat{font-size:8pt;font-weight:600;color:#b5863a;text-transform:uppercase;}
 .pdf-ir .r{text-align:right;}
 .pdf-ir .amt{font-size:10pt;font-weight:600;color:#7a5c28;text-align:right;}
 .pdf-cx td{border-top:1pt solid #e8e0f0;border-bottom:1pt solid #ccc;padding:5pt 7pt;background:#faf8fd;}
 .pdf-cx .r{text-align:right;}
 .pdf-cx .amt{font-size:10pt;font-weight:600;color:#7a5c28;text-align:right;}
-.pdf-totals{border-top:2pt solid #b5863a;margin-top:0;}
+.pdf-mat-section{margin-top:14pt;padding-top:10pt;border-top:1pt solid #ddd;}
+.pdf-mat-lbl{font-size:8pt;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#b5863a;margin-bottom:6pt;}
+.pdf-mat-tbl{width:100%;border-collapse:collapse;}
+.pdf-mat-tbl th{font-size:7.5pt;font-weight:600;color:#b5863a;text-transform:uppercase;padding:4pt 6pt;border-bottom:1.5pt solid #b5863a;text-align:left;}
+.pdf-mat-dh td{background:#f7f5f0;font-size:8.5pt;font-weight:700;color:#7a5c28;padding:4pt 6pt;border-top:1.5pt solid #b5863a;border-bottom:1pt solid #ddd;}
+.pdf-mat-row td{font-size:8pt;padding:3pt 6pt;border-bottom:1pt solid #f0ede4;color:#333;}
+.pdf-mat-row td:first-child{color:#111;font-weight:500;}
+.pdf-mat-row td:last-child{color:#b5863a;}
+.pdf-totals{border-top:2pt solid #b5863a;margin-top:14pt;}
 .pdf-sub-row{display:flex;justify-content:space-between;padding:7pt 0;border-bottom:1pt solid #eee;font-size:10pt;}
 .pdf-sub-row span:first-child{color:#555;}
 .pdf-sub-row span:last-child{font-weight:600;color:#7a5c28;}
@@ -172,24 +183,24 @@ body{background:#fff!important;color:#111!important;font-family:'DM Sans',sans-s
         <span class="arrow">▼</span>
       </div>
       <div class="jump-menu">
-        <a href="#flooring" onclick="closeJump()" data-en="01 · Flooring" data-es="01 · Pisos">01 · Flooring</a>
-        <a href="#shower" onclick="closeJump()" data-en="02 · Shower" data-es="02 · Ducha">02 · Shower</a>
-        <a href="#tub" onclick="closeJump()" data-en="03 · Bathtub" data-es="03 · Bañera">03 · Bathtub</a>
-        <a href="#vanity" onclick="closeJump()" data-en="04 · Vanity" data-es="04 · Tocador">04 · Vanity</a>
-        <a href="#doors" onclick="closeJump()" data-en="05 · Doors" data-es="05 · Puertas">05 · Doors</a>
-        <a href="#lighting" onclick="closeJump()" data-en="06 · Lighting" data-es="06 · Iluminación">06 · Lighting</a>
-        <a href="#accessories" onclick="closeJump()" data-en="07 · Accessories" data-es="07 · Accesorios">07 · Accessories</a>
-        <a href="#custom-section" onclick="closeJump()" data-en="⊕ Custom Items" data-es="⊕ Partidas Personalizadas">⊕ Custom Items</a>
-        <a href="#grand-total" onclick="closeJump()" data-en="↓ Grand Total" data-es="↓ Total General">↓ Grand Total</a>
+        <a href="#flooring" onclick="closeJump()">01 · Flooring</a>
+        <a href="#shower" onclick="closeJump()">02 · Shower</a>
+        <a href="#tub" onclick="closeJump()">03 · Bathtub</a>
+        <a href="#vanity" onclick="closeJump()">04 · Vanity</a>
+        <a href="#doors" onclick="closeJump()">05 · Doors</a>
+        <a href="#lighting" onclick="closeJump()">06 · Lighting</a>
+        <a href="#accessories" onclick="closeJump()">07 · Accessories</a>
+        <a href="#custom-section" onclick="closeJump()">⊕ Custom Items</a>
+        <a href="#grand-total" onclick="closeJump()">↓ Grand Total</a>
       </div>
     </div>
     <button class="nav-btn btn-add" onclick="addCustomItem()">
       <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-      <span data-en="Add Line Item" data-es="Agregar Partida">Add Line Item</span>
+      Add Line Item
     </button>
   </div>
 </nav><main><!-- 01 FLOORING --><section class="section" id="flooring">
-  <div class="section-header"><span class="num">01</span><h2 data-en="Flooring" data-es="Pisos">Flooring</h2></div>
+  <div class="section-header"><span class="num">01</span><h2>Flooring</h2></div>
   <div class="item-grid">
     <div class="item-card" data-div="01" data-div-label="Div 01 — Demolition &amp; Floor Tile" data-cat="Materials">
       <div class="card-material"><div>
@@ -211,7 +222,7 @@ body{background:#fff!important;color:#111!important;font-family:'DM Sans',sans-s
     </div>
   </div>
 </section><!-- 02 SHOWER --><section class="section" id="shower">
-  <div class="section-header"><span class="num">02</span><h2 data-en="Shower" data-es="Ducha">Shower</h2></div>
+  <div class="section-header"><span class="num">02</span><h2>Shower</h2></div>
   <div class="item-grid">
     <div class="item-card" data-div="02" data-div-label="Div 02 — Shower Package" data-cat="Subcontractor">
       <div class="card-material"><div>
@@ -230,24 +241,24 @@ body{background:#fff!important;color:#111!important;font-family:'DM Sans',sans-s
         <div class="pricing-row" data-row-label="Shower wall tile"><div class="pricing-row-label">Shower wall tile</div><input class="price-input" type="number" placeholder="0" min="0" step="1" data-role="qty" oninput="calcRow(this)"><select class="unit-select" onchange="calcRow(this.parentElement.querySelector('[data-role=qty]'))"><option>SF</option><option>LS</option></select><input class="price-input" type="number" placeholder="$/SF" min="0" step="0.01" data-role="unit" oninput="calcRow(this)"><div class="price-total" data-role="total">$0.00</div></div>
         <div class="pricing-row" data-row-label="Black mosaic tile — floor, curb &amp; bench"><div class="pricing-row-label">Black mosaic tile — floor, curb &amp; bench</div><input class="price-input" type="number" placeholder="0" min="0" step="1" data-role="qty" oninput="calcRow(this)"><select class="unit-select" onchange="calcRow(this.parentElement.querySelector('[data-role=qty]'))"><option>SF</option><option>LS</option></select><input class="price-input" type="number" placeholder="$/SF" min="0" step="0.01" data-role="unit" oninput="calcRow(this)"><div class="price-total" data-role="total">$0.00</div></div>
         <div class="pricing-row" data-row-label="Frameless glass enclosure — 3 panel (brass)"><div class="pricing-row-label">Frameless glass enclosure — 3 panel (brass)</div><input class="price-input" type="number" placeholder="1" min="0" step="1" data-role="qty" oninput="calcRow(this)"><select class="unit-select" onchange="calcRow(this.parentElement.querySelector('[data-role=qty]'))"><option>LS</option><option>EA</option></select><input class="price-input" type="number" placeholder="$" min="0" step="0.01" data-role="unit" oninput="calcRow(this)"><div class="price-total" data-role="total">$0.00</div></div>
-        <div class="pricing-row" data-row-label="Ceiling &amp; wall rain heads + handheld + valve (brass)"><div class="pricing-row-label">Rain heads + handheld + valve (brass)</div><input class="price-input" type="number" placeholder="1" min="0" step="1" data-role="qty" oninput="calcRow(this)"><select class="unit-select" onchange="calcRow(this.parentElement.querySelector('[data-role=qty]'))"><option>LS</option><option>EA</option></select><input class="price-input" type="number" placeholder="$" min="0" step="0.01" data-role="unit" oninput="calcRow(this)"><div class="price-total" data-role="total">$0.00</div></div>
+        <div class="pricing-row" data-row-label="Rain heads + handheld + valve (brass)"><div class="pricing-row-label">Rain heads + handheld + valve (brass)</div><input class="price-input" type="number" placeholder="1" min="0" step="1" data-role="qty" oninput="calcRow(this)"><select class="unit-select" onchange="calcRow(this.parentElement.querySelector('[data-role=qty]'))"><option>LS</option><option>EA</option></select><input class="price-input" type="number" placeholder="$" min="0" step="0.01" data-role="unit" oninput="calcRow(this)"><div class="price-total" data-role="total">$0.00</div></div>
         <div class="pricing-row labor-row" data-row-label="Shower package — tile, glass, plumbing (labor)"><div class="pricing-row-label labor">↳ Shower package — tile, glass, plumbing (labor)</div><input class="price-input" type="number" placeholder="1" min="0" step="1" data-role="qty" oninput="calcRow(this)"><select class="unit-select" onchange="calcRow(this.parentElement.querySelector('[data-role=qty]'))"><option>LS</option><option>HR</option></select><input class="price-input" type="number" placeholder="$" min="0" step="0.01" data-role="unit" oninput="calcRow(this)"><div class="price-total" data-role="total">$0.00</div></div>
       </div>
     </div>
   </div>
 </section><!-- 03 BATHTUB --><section class="section" id="tub">
-  <div class="section-header"><span class="num">03</span><h2 data-en="Bathtub &amp; Tub Filler" data-es="Bañera y Llenador">Bathtub &amp; Tub Filler</h2></div>
+  <div class="section-header"><span class="num">03</span><h2>Bathtub &amp; Tub Filler</h2></div>
   <div class="item-grid">
     <div class="item-card" data-div="04" data-div-label="Div 04 — Bathtub &amp; Ice Bath Assembly" data-cat="Materials">
       <div class="card-material"><div>
         <div class="zone-label">Material</div>
         <div class="item-name">Freestanding Rectangular Soaking Tub — Gloss White + Floor-Mount Brass Tub Filler</div>
-        <div class="item-spec">ADM Bathroom SW-103 Series · White stone resin · Glossy finish · 55–65 in. · Signature Hardware Cooper tub filler · Brushed Gold</div>
+        <div class="item-spec">ADM Bathroom SW-103 · White stone resin · Glossy finish · 55–65 in. · Signature Hardware Cooper tub filler · Brushed Gold</div>
         <div class="item-meta"><span class="retailer-badge">ADM Bathroom</span><a class="item-link" href="https://admbathroom.com/collections/freestanding-bathtubs" target="_blank">Shop Tubs <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg></a></div>
       </div><span class="note-badge">Multiple sizes</span></div>
       <div class="card-scope"><div class="scope-label">Scope of Work</div><ul class="scope-tasks">
         <li>Rough-in drain location in floor per tub placement plan; set tub level</li>
-        <li>Connect drain and overflow assembly to waste line; caulk base perimeter</li>
+        <li>Connect drain and overflow assembly; caulk base perimeter</li>
         <li>Rough-in supply lines in floor for tub filler; core through finished tile; set and connect floor-mount faucet</li>
         <li>Build slatted wood cabinet for ice bath chiller; upholster magenta bench top; plumb and wire chiller unit</li>
       </ul></div>
@@ -255,13 +266,13 @@ body{background:#fff!important;color:#111!important;font-family:'DM Sans',sans-s
         <div class="pricing-row" data-row-label="Freestanding tub (gloss white)"><div class="pricing-row-label">Freestanding tub (gloss white)</div><input class="price-input" type="number" placeholder="1" min="0" step="1" data-role="qty" oninput="calcRow(this)"><select class="unit-select" onchange="calcRow(this.parentElement.querySelector('[data-role=qty]'))"><option>EA</option><option>LS</option></select><input class="price-input" type="number" placeholder="$" min="0" step="0.01" data-role="unit" oninput="calcRow(this)"><div class="price-total" data-role="total">$0.00</div></div>
         <div class="pricing-row" data-row-label="Floor-mount tub filler (brass)"><div class="pricing-row-label">Floor-mount tub filler (brass)</div><input class="price-input" type="number" placeholder="1" min="0" step="1" data-role="qty" oninput="calcRow(this)"><select class="unit-select" onchange="calcRow(this.parentElement.querySelector('[data-role=qty]'))"><option>EA</option><option>LS</option></select><input class="price-input" type="number" placeholder="$" min="0" step="0.01" data-role="unit" oninput="calcRow(this)"><div class="price-total" data-role="total">$0.00</div></div>
         <div class="pricing-row" data-row-label="Ice bath chiller unit"><div class="pricing-row-label">Ice bath chiller unit</div><input class="price-input" type="number" placeholder="1" min="0" step="1" data-role="qty" oninput="calcRow(this)"><select class="unit-select" onchange="calcRow(this.parentElement.querySelector('[data-role=qty]'))"><option>EA</option><option>LS</option></select><input class="price-input" type="number" placeholder="$" min="0" step="0.01" data-role="unit" oninput="calcRow(this)"><div class="price-total" data-role="total">$0.00</div></div>
-        <div class="pricing-row" data-row-label="Custom millwork cabinet + magenta bench top"><div class="pricing-row-label">Custom millwork + magenta bench top</div><input class="price-input" type="number" placeholder="1" min="0" step="1" data-role="qty" oninput="calcRow(this)"><select class="unit-select" onchange="calcRow(this.parentElement.querySelector('[data-role=qty]'))"><option>LS</option></select><input class="price-input" type="number" placeholder="$" min="0" step="0.01" data-role="unit" oninput="calcRow(this)"><div class="price-total" data-role="total">$0.00</div></div>
+        <div class="pricing-row" data-row-label="Custom millwork + magenta bench top"><div class="pricing-row-label">Custom millwork + magenta bench top</div><input class="price-input" type="number" placeholder="1" min="0" step="1" data-role="qty" oninput="calcRow(this)"><select class="unit-select" onchange="calcRow(this.parentElement.querySelector('[data-role=qty]'))"><option>LS</option></select><input class="price-input" type="number" placeholder="$" min="0" step="0.01" data-role="unit" oninput="calcRow(this)"><div class="price-total" data-role="total">$0.00</div></div>
         <div class="pricing-row labor-row" data-row-label="Set tub + plumbing + electrical (labor)"><div class="pricing-row-label labor">↳ Set tub + plumbing + electrical (labor)</div><input class="price-input" type="number" placeholder="0" min="0" step="1" data-role="qty" oninput="calcRow(this)"><select class="unit-select" onchange="calcRow(this.parentElement.querySelector('[data-role=qty]'))"><option>HR</option><option>LS</option></select><input class="price-input" type="number" placeholder="$/HR" min="0" step="0.01" data-role="unit" oninput="calcRow(this)"><div class="price-total" data-role="total">$0.00</div></div>
       </div>
     </div>
   </div>
 </section><!-- 04 VANITY --><section class="section" id="vanity">
-  <div class="section-header"><span class="num">04</span><h2 data-en="Vanity" data-es="Tocador">Vanity</h2></div>
+  <div class="section-header"><span class="num">04</span><h2>Vanity</h2></div>
   <div class="item-grid">
     <div class="item-card" data-div="05" data-div-label="Div 05 — Vanity &amp; Plumbing Fixtures" data-cat="Materials">
       <div class="card-material"><div>
@@ -273,7 +284,7 @@ body{background:#fff!important;color:#111!important;font-family:'DM Sans',sans-s
       <div class="card-scope"><div class="scope-label">Scope of Work</div><ul class="scope-tasks">
         <li>Assemble RTA cabinets; install wall blocking; hang floating at 32–34 in. AFF; anchor to studs</li>
         <li>Template countertop; CNC fabricate quartz; epoxy-bond undermount sinks; set top with silicone</li>
-        <li>Install 2 widespread brass faucets; connect supply and drain lines; test flow and drainage</li>
+        <li>Install 2 widespread brass faucets; connect supply and drain lines</li>
         <li>Install full wall tile behind vanity — large format white/off-white marble look</li>
         <li>Hang 2 rectangular mirrors; set recessed medicine cabinet; install warm white LED toe-kick strip</li>
       </ul></div>
@@ -283,13 +294,13 @@ body{background:#fff!important;color:#111!important;font-family:'DM Sans',sans-s
         <div class="pricing-row" data-row-label="Undermount sinks (2)"><div class="pricing-row-label">Undermount sinks (2)</div><input class="price-input" type="number" placeholder="2" min="0" step="1" data-role="qty" oninput="calcRow(this)"><select class="unit-select" onchange="calcRow(this.parentElement.querySelector('[data-role=qty]'))"><option>EA</option><option>LS</option></select><input class="price-input" type="number" placeholder="$/EA" min="0" step="0.01" data-role="unit" oninput="calcRow(this)"><div class="price-total" data-role="total">$0.00</div></div>
         <div class="pricing-row" data-row-label="Widespread faucets — brass (2)"><div class="pricing-row-label">Widespread faucets — brass (2)</div><input class="price-input" type="number" placeholder="2" min="0" step="1" data-role="qty" oninput="calcRow(this)"><select class="unit-select" onchange="calcRow(this.parentElement.querySelector('[data-role=qty]'))"><option>EA</option><option>LS</option></select><input class="price-input" type="number" placeholder="$/EA" min="0" step="0.01" data-role="unit" oninput="calcRow(this)"><div class="price-total" data-role="total">$0.00</div></div>
         <div class="pricing-row" data-row-label="Vanity wall tile — large format"><div class="pricing-row-label">Vanity wall tile — large format</div><input class="price-input" type="number" placeholder="0" min="0" step="1" data-role="qty" oninput="calcRow(this)"><select class="unit-select" onchange="calcRow(this.parentElement.querySelector('[data-role=qty]'))"><option>SF</option><option>LS</option></select><input class="price-input" type="number" placeholder="$/SF" min="0" step="0.01" data-role="unit" oninput="calcRow(this)"><div class="price-total" data-role="total">$0.00</div></div>
-        <div class="pricing-row" data-row-label="Rectangular mirrors (2) + medicine cabinet"><div class="pricing-row-label">Mirrors (2) + medicine cabinet</div><input class="price-input" type="number" placeholder="1" min="0" step="1" data-role="qty" oninput="calcRow(this)"><select class="unit-select" onchange="calcRow(this.parentElement.querySelector('[data-role=qty]'))"><option>LS</option></select><input class="price-input" type="number" placeholder="$" min="0" step="0.01" data-role="unit" oninput="calcRow(this)"><div class="price-total" data-role="total">$0.00</div></div>
+        <div class="pricing-row" data-row-label="Mirrors (2) + medicine cabinet"><div class="pricing-row-label">Mirrors (2) + medicine cabinet</div><input class="price-input" type="number" placeholder="1" min="0" step="1" data-role="qty" oninput="calcRow(this)"><select class="unit-select" onchange="calcRow(this.parentElement.querySelector('[data-role=qty]'))"><option>LS</option></select><input class="price-input" type="number" placeholder="$" min="0" step="0.01" data-role="unit" oninput="calcRow(this)"><div class="price-total" data-role="total">$0.00</div></div>
         <div class="pricing-row labor-row" data-row-label="Vanity install + tile + plumbing + LED (labor)"><div class="pricing-row-label labor">↳ Vanity install + tile + plumbing + LED (labor)</div><input class="price-input" type="number" placeholder="0" min="0" step="1" data-role="qty" oninput="calcRow(this)"><select class="unit-select" onchange="calcRow(this.parentElement.querySelector('[data-role=qty]'))"><option>HR</option><option>LS</option></select><input class="price-input" type="number" placeholder="$/HR" min="0" step="0.01" data-role="unit" oninput="calcRow(this)"><div class="price-total" data-role="total">$0.00</div></div>
       </div>
     </div>
   </div>
 </section><!-- 05 DOORS --><section class="section" id="doors">
-  <div class="section-header"><span class="num">05</span><h2 data-en="Doors" data-es="Puertas">Doors</h2></div>
+  <div class="section-header"><span class="num">05</span><h2>Doors</h2></div>
   <div class="item-grid">
     <div class="item-card" data-div="06" data-div-label="Div 06 — Doors &amp; Hardware" data-cat="Materials">
       <div class="card-material"><div>
@@ -304,14 +315,14 @@ body{background:#fff!important;color:#111!important;font-family:'DM Sans',sans-s
         <li>Install white painted MDF casings on both faces; bore and install matte black lever hardware</li>
       </ul></div>
       <div class="card-pricing"><div class="pricing-label">Material Pricing</div>
-        <div class="pricing-row" data-row-label="Interior doors — prehung, charcoal 5-panel (3)"><div class="pricing-row-label">Interior doors — prehung, charcoal (3)</div><input class="price-input" type="number" placeholder="3" min="0" step="1" data-role="qty" oninput="calcRow(this)"><select class="unit-select" onchange="calcRow(this.parentElement.querySelector('[data-role=qty]'))"><option>EA</option><option>LS</option></select><input class="price-input" type="number" placeholder="$/EA" min="0" step="0.01" data-role="unit" oninput="calcRow(this)"><div class="price-total" data-role="total">$0.00</div></div>
+        <div class="pricing-row" data-row-label="Interior doors — prehung charcoal 5-panel (3)"><div class="pricing-row-label">Interior doors — prehung charcoal (3)</div><input class="price-input" type="number" placeholder="3" min="0" step="1" data-role="qty" oninput="calcRow(this)"><select class="unit-select" onchange="calcRow(this.parentElement.querySelector('[data-role=qty]'))"><option>EA</option><option>LS</option></select><input class="price-input" type="number" placeholder="$/EA" min="0" step="0.01" data-role="unit" oninput="calcRow(this)"><div class="price-total" data-role="total">$0.00</div></div>
         <div class="pricing-row" data-row-label="Matte black lever hardware (3 sets)"><div class="pricing-row-label">Matte black lever hardware (3 sets)</div><input class="price-input" type="number" placeholder="3" min="0" step="1" data-role="qty" oninput="calcRow(this)"><select class="unit-select" onchange="calcRow(this.parentElement.querySelector('[data-role=qty]'))"><option>EA</option><option>LS</option></select><input class="price-input" type="number" placeholder="$/EA" min="0" step="0.01" data-role="unit" oninput="calcRow(this)"><div class="price-total" data-role="total">$0.00</div></div>
         <div class="pricing-row labor-row" data-row-label="Demo, hang, case &amp; hardware (labor)"><div class="pricing-row-label labor">↳ Demo, hang, case &amp; hardware (labor)</div><input class="price-input" type="number" placeholder="0" min="0" step="1" data-role="qty" oninput="calcRow(this)"><select class="unit-select" onchange="calcRow(this.parentElement.querySelector('[data-role=qty]'))"><option>HR</option><option>EA</option><option>LS</option></select><input class="price-input" type="number" placeholder="$/HR" min="0" step="0.01" data-role="unit" oninput="calcRow(this)"><div class="price-total" data-role="total">$0.00</div></div>
       </div>
     </div>
   </div>
 </section><!-- 06 LIGHTING --><section class="section" id="lighting">
-  <div class="section-header"><span class="num">06</span><h2 data-en="Lighting" data-es="Iluminación">Lighting</h2></div>
+  <div class="section-header"><span class="num">06</span><h2>Lighting</h2></div>
   <div class="item-grid">
     <div class="item-card" data-div="07" data-div-label="Div 07 — Lighting" data-cat="Materials">
       <div class="card-material"><div>
@@ -334,7 +345,7 @@ body{background:#fff!important;color:#111!important;font-family:'DM Sans',sans-s
     </div>
   </div>
 </section><!-- 07 ACCESSORIES --><section class="section" id="accessories">
-  <div class="section-header"><span class="num">07</span><h2 data-en="Accessories" data-es="Accesorios">Accessories</h2></div>
+  <div class="section-header"><span class="num">07</span><h2>Accessories</h2></div>
   <div class="item-grid">
     <div class="item-card" data-div="08" data-div-label="Div 08 — Accessories" data-cat="Materials">
       <div class="card-material"><div>
@@ -357,34 +368,39 @@ body{background:#fff!important;color:#111!important;font-family:'DM Sans',sans-s
     </div>
   </div>
 </section><!-- CUSTOM LINE ITEMS --><section class="section" id="custom-section">
-  <div class="custom-header"><span class="num" style="color:var(--custom-accent);">+</span><h2 data-en="Custom Line Items" data-es="Partidas Personalizadas">Custom Line Items</h2></div>
+  <div class="custom-header"><span class="num" style="color:var(--custom-accent);">+</span><h2>Custom Line Items</h2></div>
   <div id="custom-list"></div>
   <div style="margin-top:12px;text-align:center;">
     <button class="nav-btn btn-add" style="font-size:13px;padding:10px 22px;" onclick="addCustomItem()">
       <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-      <span data-en="Add Line Item" data-es="Agregar Partida">Add Line Item</span>
+      Add Line Item
     </button>
   </div>
 </section><!-- GRAND TOTAL --><div class="grand-total-section" id="grand-total">
-  <div class="gt-header"><span style="font-size:9px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--brass);">Summary</span><h3 data-en="Project Grand Total" data-es="Total General del Proyecto">Project Grand Total</h3></div>
+  <div class="gt-header"><span style="font-size:9px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--brass);">Summary</span><h3>Project Grand Total</h3></div>
   <div class="gt-body">
-    <div class="gt-row"><span class="gt-label" data-en="Total Materials" data-es="Total Materiales">Total Materials</span><span class="gt-val" id="gt-materials">$0.00</span></div>
-    <div class="gt-row"><span class="gt-label" data-en="Total Labor" data-es="Total Mano de Obra">Total Labor</span><span class="gt-val" id="gt-labor">$0.00</span></div>
-    <div class="gt-row"><span class="gt-label" data-en="Custom Items Total" data-es="Total Partidas Personalizadas">Custom Items Total</span><span class="gt-val" id="gt-custom">$0.00</span></div>
+    <div class="gt-row"><span class="gt-label">Total Materials</span><span class="gt-val" id="gt-materials">$0.00</span></div>
+    <div class="gt-row"><span class="gt-label">Total Labor</span><span class="gt-val" id="gt-labor">$0.00</span></div>
+    <div class="gt-row"><span class="gt-label">Custom Items Total</span><span class="gt-val" id="gt-custom">$0.00</span></div>
   </div>
-  <div class="gt-final"><span class="gt-final-label" data-en="Total Project Estimate" data-es="Estimado Total del Proyecto">Total Project Estimate</span><span class="gt-final-val" id="gt-total">$0.00</span></div>
-</div></main><!-- DOWNLOAD BID PDF — BOTTOM OF PAGE --><div class="bottom-bar">
+  <div class="gt-final"><span class="gt-final-label">Total Project Estimate</span><span class="gt-final-val" id="gt-total">$0.00</span></div>
+</div></main><!-- EXCLUSIONS INPUT --><div class="excl-wrap">
+  <div class="excl-box">
+    <div class="excl-lbl">Exclusions / Notes for Bid</div>
+    <textarea id="exclusions-input" class="excl-ta">None at this time. Any work not expressly listed in the scope divisions above is excluded from this bid.</textarea>
+  </div>
+</div><!-- DOWNLOAD BUTTON --><div class="bottom-bar">
   <button class="dl-btn" onclick="generateBidPDF()">
     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
-    <span data-en="Download Bid Proposal PDF" data-es="Descargar Propuesta PDF">Download Bid Proposal PDF</span>
+    Download Bid Proposal PDF
   </button>
 </div><footer>
   <strong>Ross Bathroom Renovation</strong> · Kansas City, MO · All product links direct to retailer pages · Prices subject to change · Quantities and dimensions to be confirmed by GC before ordering
-</footer><!-- HIDDEN BID PDF TEMPLATE — only shown during print --><div id="bid-pdf">
+</footer><!-- HIDDEN BID PDF --><div id="bid-pdf">
   <div class="pdf-header">
     <div class="pdf-title">BID PROPOSAL</div>
     <div class="pdf-company">Midwest Equity Builders</div>
-    <div class="pdf-meta"><div>Date: <span id="pdf-date"></span></div><div>Bid Ref: <span>Ross Primary Bath</span></div></div>
+    <div class="pdf-meta"><div>Date: <span id="pdf-date"></span></div><div>Bid Ref: Ross Primary Bath</div></div>
   </div>
   <table class="pdf-info-tbl">
     <thead><tr><th>Bidder</th><th>Company</th><th>Email</th><th>Phone</th></tr></thead>
@@ -401,15 +417,22 @@ body{background:#fff!important;color:#111!important;font-family:'DM Sans',sans-s
     </tr></thead>
     <tbody id="pdf-lines"></tbody>
   </table>
+  <div class="pdf-mat-section">
+    <div class="pdf-mat-lbl">Materials Reference</div>
+    <table class="pdf-mat-tbl">
+      <thead><tr><th style="width:38%;">Item</th><th style="width:47%;">Specification</th><th style="width:15%;">Source</th></tr></thead>
+      <tbody id="pdf-mat-body"></tbody>
+    </table>
+  </div>
   <div class="pdf-totals">
-    <div class="pdf-sub-row"><span>Total Materials</span><span id="pdf-mat">$0.00</span></div>
+    <div class="pdf-sub-row"><span>Total Materials</span><span id="pdf-mat-total">$0.00</span></div>
     <div class="pdf-sub-row"><span>Total Labor</span><span id="pdf-lab">$0.00</span></div>
     <div class="pdf-sub-row" id="pdf-cust-row" style="display:none;"><span>Custom Items</span><span id="pdf-cust">$0.00</span></div>
     <div class="pdf-total-row"><span class="pdf-total-lbl">TOTAL BID</span><span class="pdf-total-val" id="pdf-total">$0.00</span></div>
   </div>
   <div class="pdf-excl">
     <div class="pdf-excl-lbl">Exclusions</div>
-    <div class="pdf-excl-body">None at this time. Any work not expressly listed in the scope divisions above is excluded from this bid.</div>
+    <div class="pdf-excl-body" id="pdf-excl-body"></div>
   </div>
   <div class="pdf-sigs">
     <div>
@@ -425,53 +448,38 @@ body{background:#fff!important;color:#111!important;font-family:'DM Sans',sans-s
   </div>
   <div class="pdf-footer"><strong>Midwest Equity Builders</strong> · Ross Primary Bath · Kansas City, MO &nbsp;·&nbsp; Prices subject to change · Quantities to be confirmed by GC before ordering</div>
 </div><script>
-// CALC ROW
 function calcRow(t){const row=t.closest('.pricing-row');if(!row)return;const el=row.querySelector('[data-role="total"]');if(!el)return;const q=parseFloat(row.querySelector('[data-role="qty"]').value)||0;const u=parseFloat(row.querySelector('[data-role="unit"]').value)||0;el.textContent='$'+(q*u).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});updateGrandTotal();}
-
-// GRAND TOTAL
 function updateGrandTotal(){let mat=0,lab=0,cust=0;const fmt=n=>'$'+n.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});document.querySelectorAll('.item-card .pricing-row').forEach(row=>{const v=parseFloat((row.querySelector('\[data-role="total"\]')||{}).textContent?.replace(/\[$,]/g,''))||0;if(row.classList.contains('labor-row'))lab+=v;else mat+=v;});document.querySelectorAll('.custom-pricing-row [data-role="total"]').forEach(el=>{cust+=parseFloat(el.textContent.replace(/[$,]/g,''))||0;});document.getElementById('gt-materials').textContent=fmt(mat);document.getElementById('gt-labor').textContent=fmt(lab);document.getElementById('gt-custom').textContent=fmt(cust);document.getElementById('gt-total').textContent=fmt(mat+lab+cust);}
-
-// CUSTOM LINE ITEMS
 let customCount=0;
-const CATS_EN=['Demo / Removal','GC Fee','Permit','Inspection','Design Fee','Contingency','Delivery / Freight','Dumpster / Disposal','Painting','Rough Plumbing','Rough Electrical','Rough Framing','Other'];
-const CATS_ES=['Demolición / Remoción','Honorario CG','Permiso','Inspección','Honorario de Diseño','Contingencia','Entrega / Flete','Contenedor / Desecho','Pintura','Plomería Gruesa','Electricidad Gruesa','Enmarcado Grueso','Otro'];
-function addCustomItem(){customCount++;const id='custom-'+customCount;const cats=currentLang==='en'?CATS_EN:CATS_ES;const opts=cats.map(c=>`<option>${c}</option>`).join('');const card=document.createElement('div');card.className='custom-card';card.id=id;card.innerHTML=`<div class="custom-card-top"><div><select class="cat-select" style="margin-bottom:6px;" onchange="updateGrandTotal()">${opts}</select><input class="custom-name-input" type="text" placeholder="${currentLang==='en'?'Line item description...':'Descripción de la partida...'}"><input class="custom-desc-input" type="text" placeholder="${currentLang==='en'?'Notes (optional)':'Notas (opcional)'}" style="margin-top:4px;"></div><button class="remove-btn" onclick="removeCustomItem('${id}')">✕</button></div><div class="custom-card-pricing"><div class="pricing-label" style="color:var(--custom-accent);">${currentLang==='en'?'Pricing':'Precio'}</div><div class="custom-pricing-row"><div class="pricing-row-label" style="color:var(--ink-dim);font-size:11.5px;">${currentLang==='en'?'Amount':'Monto'}</div><input class="price-input" type="number" placeholder="0" min="0" step="1" data-role="qty" oninput="calcCustomRow(this)"><select class="unit-select" onchange="calcCustomRow(this.parentElement.querySelector('\[data-role=qty\]'))"><option>LS</option><option>EA</option><option>HR</option><option>SF</option><option>LF</option><option>%</option></select><input class="price-input" type="number" placeholder="$" min="0" step="0.01" data-role="unit" oninput="calcCustomRow(this)"><div class="price-total" data-role="total" style="border-color:var(--custom-border);">$0.00</div></div></div>`;document.getElementById('custom-list').appendChild(card);card.querySelector('.custom-name-input').focus();updateGrandTotal();}
+const CATS=['Demo / Removal','GC Fee','Permit','Inspection','Design Fee','Contingency','Delivery / Freight','Dumpster / Disposal','Painting','Rough Plumbing','Rough Electrical','Rough Framing','Other'];
+function addCustomItem(){customCount++;const id='custom-'+customCount;const opts=CATS.map(c=>`<option>${c}</option>`).join('');const card=document.createElement('div');card.className='custom-card';card.id=id;card.innerHTML=`<div class="custom-card-top"><div><select class="cat-select" style="margin-bottom:6px;">${opts}</select><input class="custom-name-input" type="text" placeholder="Line item description..."><input class="custom-desc-input" type="text" placeholder="Notes (optional)" style="margin-top:4px;"></div><button class="remove-btn" onclick="removeCustomItem('${id}')">✕</button></div><div class="custom-card-pricing"><div class="pricing-label" style="color:var(--custom-accent);">Pricing</div><div class="custom-pricing-row"><div class="pricing-row-label" style="color:var(--ink-dim);font-size:11.5px;">Amount</div><input class="price-input" type="number" placeholder="0" min="0" step="1" data-role="qty" oninput="calcCustomRow(this)"><select class="unit-select"><option>LS</option><option>EA</option><option>HR</option><option>SF</option><option>LF</option><option>%</option></select><input class="price-input" type="number" placeholder="$" min="0" step="0.01" data-role="unit" oninput="calcCustomRow(this)"><div class="price-total" data-role="total" style="border-color:var(--custom-border);">$0.00</div></div></div>`;document.getElementById('custom-list').appendChild(card);card.querySelector('.custom-name-input').focus();updateGrandTotal();}
 function removeCustomItem(id){const el=document.getElementById(id);if(el){el.remove();updateGrandTotal();}}
 function calcCustomRow(t){const row=t.closest('.custom-pricing-row');if(!row)return;const q=parseFloat(row.querySelector('[data-role="qty"]').value)||0;const u=parseFloat(row.querySelector('[data-role="unit"]').value)||0;row.querySelector('[data-role="total"]').textContent='$'+(q*u).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});updateGrandTotal();}
-
-// LANGUAGE
 let currentLang='en';
-function setLang(lang){currentLang=lang;document.getElementById('btn-en').classList.toggle('active',lang==='en');document.getElementById('btn-es').classList.toggle('active',lang==='es');document.querySelectorAll('[data-en]').forEach(el=>{if(el.tagName==='INPUT'||el.tagName==='SELECT'||el.tagName==='TEXTAREA')return;const v=el.getAttribute('data-'+lang);if(v!==null)el.innerHTML=v;});}
-
-// JUMP
+function setLang(lang){currentLang=lang;document.getElementById('btn-en').classList.toggle('active',lang==='en');document.getElementById('btn-es').classList.toggle('active',lang==='es');}
 function closeJump(){document.getElementById('jumpDrop').classList.remove('open');}
 document.addEventListener('click',e=>{const d=document.getElementById('jumpDrop');if(d&&!d.contains(e.target))d.classList.remove('open');});
-
-// FORMAT
 function fmtN(n){return '$'+n.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});}
-
-// GENERATE BID PDF
 function generateBidPDF(){
   document.getElementById('pdf-date').textContent=new Date().toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'});
-  const tbody=document.getElementById('pdf-lines');
-  tbody.innerHTML='';
+  document.getElementById('pdf-excl-body').textContent=document.getElementById('exclusions-input')?.value||'None at this time.';
+  const tbody=document.getElementById('pdf-lines');tbody.innerHTML='';
+  const matBody=document.getElementById('pdf-mat-body');matBody.innerHTML='';
   const divsSeen={};
-
   document.querySelectorAll('.item-card[data-div]').forEach(card=>{
     const divId=card.getAttribute('data-div');
     const divLabel=card.getAttribute('data-div-label');
     const cat=card.getAttribute('data-cat')||'Materials';
-
     if(divLabel&&!divsSeen[divId]){
       divsSeen[divId]=true;
-      const dh=document.createElement('tr');dh.className='pdf-dh';
-      dh.innerHTML=`<td colspan="6">${divLabel}</td>`;tbody.appendChild(dh);
-      card.querySelectorAll('.scope-tasks li').forEach(li=>{
-        const sc=document.createElement('tr');sc.className='pdf-sc';
-        sc.innerHTML=`<td colspan="6">${li.textContent.trim()}</td>`;tbody.appendChild(sc);
-      });
+      const dh=document.createElement('tr');dh.className='pdf-dh';dh.innerHTML=`<td colspan="6">${divLabel}</td>`;tbody.appendChild(dh);
+      card.querySelectorAll('.scope-tasks li').forEach(li=>{const sc=document.createElement('tr');sc.className='pdf-sc';sc.innerHTML=`<td colspan="6">${li.textContent.trim()}</td>`;tbody.appendChild(sc);});
+      const mdh=document.createElement('tr');mdh.className='pdf-mat-dh';mdh.innerHTML=`<td colspan="3">${divLabel}</td>`;matBody.appendChild(mdh);
     }
-
+    const name=card.querySelector('.item-name')?.textContent.trim()||'';
+    const spec=card.querySelector('.item-spec')?.textContent.trim()||'';
+    const retailer=card.querySelector('.retailer-badge')?.textContent.trim()||'';
+    const mrow=document.createElement('tr');mrow.className='pdf-mat-row';mrow.innerHTML=`<td>${name}</td><td>${spec}</td><td>${retailer}</td>`;matBody.appendChild(mrow);
     card.querySelectorAll('.pricing-row').forEach(row=>{
       const lbl=(row.getAttribute('data-row-label')||row.querySelector('.pricing-row-label')?.textContent.trim()||'').replace(/^↳\s*/,'');
       const qty=row.querySelector('[data-role="qty"]')?.value||'';
@@ -484,7 +492,6 @@ function generateBidPDF(){
       tbody.appendChild(tr);
     });
   });
-
   let hasCustom=false;
   document.querySelectorAll('.custom-card').forEach(card=>{
     const desc=card.querySelector('.custom-name-input')?.value||'Custom Item';
@@ -499,11 +506,10 @@ function generateBidPDF(){
     tr.innerHTML=`<td>${desc}</td><td>${cat}</td><td class="r">${qty}</td><td>${unit}</td><td class="r">${price?fmtN(parseFloat(price)||0):'—'}</td><td class="amt">${total}</td>`;
     tbody.appendChild(tr);
   });
-
   const mat=parseFloat(document.getElementById('gt-materials').textContent.replace(/[$,]/g,''))||0;
   const lab=parseFloat(document.getElementById('gt-labor').textContent.replace(/[$,]/g,''))||0;
   const cust=parseFloat(document.getElementById('gt-custom').textContent.replace(/[$,]/g,''))||0;
-  document.getElementById('pdf-mat').textContent=fmtN(mat);
+  document.getElementById('pdf-mat-total').textContent=fmtN(mat);
   document.getElementById('pdf-lab').textContent=fmtN(lab);
   document.getElementById('pdf-total').textContent=fmtN(mat+lab+cust);
   const cr=document.getElementById('pdf-cust-row');
