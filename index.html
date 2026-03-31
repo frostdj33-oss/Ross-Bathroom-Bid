@@ -1,1 +1,463 @@
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ross Bathroom — Scope &amp; Sourcing Guide</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&family=DM+Sans:wght@300;400;500&display=swap');
+:root{--brass:#c4973f;--brass-dim:#a07830;--brass-light:#e8c97b;--bg:#111009;--surface:#1c1a14;--surface2:#232118;--surface3:#2a2720;--card:#201e18;--scope-bg:#181510;--border:#38342a;--border-bright:#4a4438;--ink:#e8e2d5;--ink-dim:#a09880;--ink-faint:#6a6050;--green:#5a9a6a;--input-bg:#141210;--input-border:#3a3628;--total-bg:#0e0c08;--custom-bg:#1a1520;--custom-border:#3a2d50;--custom-accent:#9b7fd4}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;min-height:100vh}
+header{background:var(--surface);border-bottom:2px solid var(--brass);padding:44px 24px 32px}
+.eyebrow{font-size:10px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--brass);margin-bottom:12px}
+header h1{font-family:'Cormorant Garamond',serif;font-size:40px;font-weight:300;color:#fff;line-height:1.1;margin-bottom:10px}
+header .sub{font-size:13px;color:var(--ink-dim);max-width:520px;line-height:1.55}
+.nav-bar{background:var(--surface2);border-bottom:1px solid var(--border-bright);padding:0 16px;position:sticky;top:0;z-index:100;box-shadow:0 2px 16px rgba(0,0,0,.5)}
+.nav-inner{display:flex;align-items:center;gap:10px;padding:10px 0;flex-wrap:wrap}
+.lang-toggle{display:flex;align-items:center;border:1px solid var(--border-bright);border-radius:6px;overflow:hidden}
+.lang-btn{padding:7px 12px;font-size:11px;font-weight:500;cursor:pointer;border:none;background:transparent;color:var(--ink-dim)}
+.lang-btn.active{background:var(--brass);color:#0e0c08}
+.lang-sep{width:1px;background:var(--border-bright)}
+.jump-dropdown{position:relative}
+.jump-trigger{display:flex;align-items:center;gap:8px;background:var(--surface3);border:1px solid var(--border-bright);border-radius:6px;padding:7px 13px;cursor:pointer;color:var(--ink-dim);font-size:11px;font-weight:500;text-transform:uppercase;user-select:none}
+.jump-trigger .arrow{font-size:9px;color:var(--brass);transition:transform .2s}
+.jump-dropdown.open .arrow{transform:rotate(180deg)}
+.jump-menu{display:none;position:absolute;top:calc(100% + 6px);left:0;background:var(--surface2);border:1px solid var(--border-bright);border-radius:6px;overflow:hidden;min-width:180px;z-index:200;box-shadow:0 8px 32px rgba(0,0,0,.6)}
+.jump-dropdown.open .jump-menu{display:block}
+.jump-menu a{display:block;padding:9px 16px;font-size:13px;color:var(--ink-dim);text-decoration:none;border-bottom:1px solid var(--border)}
+.jump-menu a:last-child{border-bottom:none}
+.nav-btn{display:inline-flex;align-items:center;gap:7px;border:none;border-radius:6px;padding:8px 16px;font-size:11px;font-weight:500;text-transform:uppercase;cursor:pointer}
+.btn-dl{background:var(--brass);color:#0e0c08;margin-left:auto}
+.btn-add{background:var(--custom-bg);color:var(--custom-accent);border:1px solid var(--custom-border)}
+main{max-width:860px;margin:0 auto;padding:0 16px 100px}
+.section{margin-top:48px}
+.section-header{display:flex;align-items:center;gap:14px;margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid var(--border-bright)}
+.section-header .num{font-family:'Cormorant Garamond',serif;font-size:12px;font-weight:600;color:var(--brass);min-width:24px}
+.section-header h2{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:400;color:var(--ink)}
+.item-grid{display:grid;gap:14px}
+.item-card{background:var(--card);border:1px solid var(--border-bright);border-radius:8px;overflow:hidden}
+.card-material{padding:18px 20px 14px;border-bottom:1px dashed var(--border-bright);display:grid;grid-template-columns:1fr auto;gap:10px;align-items:start}
+.zone-label{font-size:9px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--brass);margin-bottom:4px}
+.item-name{font-size:13.5px;font-weight:500;color:var(--ink);margin-bottom:3px;line-height:1.4}
+.item-spec{font-size:12px;color:var(--ink-dim);margin-bottom:10px;line-height:1.5}
+.item-meta{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.retailer-badge{font-size:10px;font-weight:500;text-transform:uppercase;background:var(--surface3);color:var(--brass);border:1px solid var(--border-bright);padding:3px 9px;border-radius:3px}
+.item-link{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:500;color:var(--brass);text-decoration:none;border-bottom:1px solid var(--brass-dim)}
+.item-link svg{width:11px;height:11px}
+.note-badge{font-size:10px;color:var(--brass);border:1px solid var(--brass-dim);padding:3px 9px;border-radius:3px;font-weight:500;white-space:nowrap;align-self:start}
+.card-scope{background:var(--scope-bg);padding:12px 20px 14px;border-bottom:1px solid var(--border)}
+.scope-label{font-size:9px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--brass-dim);margin-bottom:8px}
+.scope-tasks{list-style:none;display:flex;flex-direction:column;gap:4px}
+.scope-tasks li{font-size:12px;color:var(--ink-dim);display:flex;gap:7px;align-items:flex-start;line-height:1.45}
+.scope-tasks li::before{content:'›';color:var(--brass);font-size:14px;line-height:1.2;flex-shrink:0}
+.card-pricing{background:var(--surface3);padding:14px 20px}
+.pricing-label{font-size:9px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--green);margin-bottom:10px}
+.pricing-row{display:grid;grid-template-columns:1fr 68px 96px 108px;gap:7px;align-items:center;margin-bottom:6px}
+.pricing-row.labor-row{margin-top:8px;padding-top:8px;border-top:1px dashed var(--border-bright)}
+.pricing-row-label{font-size:11.5px;color:var(--ink-dim);font-weight:500}
+.pricing-row-label.labor{color:var(--green);font-size:11px}
+.price-input{background:var(--input-bg);border:1px solid var(--input-border);border-radius:4px;color:var(--ink);font-family:'DM Sans',sans-serif;font-size:12.5px;padding:5px 7px;width:100%;text-align:right;-moz-appearance:textfield}
+.price-input::-webkit-outer-spin-button,.price-input::-webkit-inner-spin-button{-webkit-appearance:none}
+.price-input:focus{outline:none;border-color:var(--brass-dim)}
+.unit-select{background:var(--input-bg);border:1px solid var(--input-border);border-radius:4px;color:var(--ink-dim);font-family:'DM Sans',sans-serif;font-size:11px;padding:5px 4px;width:100%}
+.price-total{font-size:13px;font-weight:500;color:var(--brass-light);text-align:right;padding:5px 7px;background:var(--input-bg);border-radius:4px;border:1px solid var(--border);font-family:'DM Sans',sans-serif}
+#custom-section{margin-top:48px}
+.custom-header{display:flex;align-items:center;gap:14px;margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid var(--custom-border)}
+.custom-header h2{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:400;color:var(--custom-accent)}
+#custom-list{display:grid;gap:12px}
+.custom-card{background:var(--custom-bg);border:1px solid var(--custom-border);border-radius:8px;overflow:hidden}
+.custom-card-top{padding:14px 16px 12px;display:grid;grid-template-columns:1fr auto;gap:8px;align-items:start;border-bottom:1px solid var(--custom-border)}
+.custom-name-input,.custom-desc-input{background:var(--input-bg);border:1px solid var(--input-border);border-radius:4px;color:var(--ink);font-family:'DM Sans',sans-serif;padding:5px 8px;width:100%;margin-bottom:4px}
+.custom-name-input{font-size:13.5px;font-weight:500}
+.custom-desc-input{font-size:11.5px;color:var(--ink-dim)}
+.cat-select{background:var(--input-bg);border:1px solid var(--custom-border);border-radius:4px;color:var(--custom-accent);font-family:'DM Sans',sans-serif;font-size:10px;padding:4px 6px;min-width:110px;margin-bottom:6px}
+.remove-btn{background:transparent;border:1px solid #3a2030;border-radius:4px;color:#7a4050;font-size:16px;padding:4px 8px;cursor:pointer}
+.custom-card-pricing{background:var(--surface3);padding:12px 16px}
+.custom-pricing-row{display:grid;grid-template-columns:1fr 68px 96px 108px;gap:7px;align-items:center;margin-bottom:6px}
+.grand-total-section{margin-top:48px;background:var(--total-bg);border:1px solid var(--border-bright);border-radius:10px;overflow:hidden}
+.gt-header{padding:20px 24px 16px;border-bottom:1px solid var(--border-bright);display:flex;align-items:center;gap:12px}
+.gt-header h3{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:400;color:var(--ink)}
+.gt-body{padding:4px 24px 8px}
+.gt-row{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--border);font-size:13px}
+.gt-row:last-child{border-bottom:none}
+.gt-row .gt-label{color:var(--ink-dim)}
+.gt-row .gt-val{color:var(--brass-light);font-weight:500;font-size:14px}
+.gt-final{display:flex;justify-content:space-between;align-items:center;padding:16px 24px;background:var(--surface);border-top:2px solid var(--brass)}
+.gt-final-label{font-family:'Cormorant Garamond',serif;font-size:20px;color:var(--ink)}
+.gt-final-val{font-size:24px;font-weight:500;color:var(--brass)}
+footer{background:var(--surface);border-top:1px solid var(--border-bright);color:var(--ink-faint);text-align:center;padding:24px;font-size:11.5px;margin-top:60px}
+footer strong{color:var(--brass)}
+@media print{@page{margin:.6in .5in;size:letter}*{-webkit-print-color-adjust:exact;print-color-adjust:exact}body{background:#fff!important;color:#111!important}.nav-bar,.btn-add,#custom-section,.remove-btn{display:none!important}header{background:#f5f5f0!important;border-bottom:2pt solid #b5863a}header h1{color:#111!important}.item-card{border:1pt solid #ccc!important;background:#fff!important;page-break-inside:avoid}.card-scope{background:#faf8f4!important}.card-pricing{background:#f7f7f4!important}.price-input{background:#f7f7f7!important;color:#111!important}.price-total{background:#f0ede4!important;color:#7a5c28!important}.gt-final{background:#f5f5f0!important;border-top:2pt solid #b5863a!important}.gt-final-val{color:#b5863a!important}}
+</style>
+</head>
+<body>
+<header>
+<div class="eyebrow" data-en="Interior Design · Kansas City, MO" data-es="Diseño de Interiores · Kansas City, MO">Interior Design · Kansas City, MO</div>
+<h1 data-en="Ross Bathroom Scope &amp; Sourcing Guide" data-es="Guía de Alcance y Materiales — Baño Ross">Ross Bathroom<br>Scope &amp; Sourcing Guide</h1>
+<p class="sub" data-en="Each line item includes contractor scope, a direct product source link, and editable pricing fields." data-es="Cada línea incluye el alcance del contratista, un enlace de producto y campos de precios editables.">Each line item includes contractor scope, a direct product source link, and editable pricing fields.</p>
+</header>
+<nav class="nav-bar">
+<div class="nav-inner">
+<div class="lang-toggle">
+<button class="lang-btn active" id="btn-en" onclick="setLang('en')">EN</button>
+<div class="lang-sep"></div>
+<button class="lang-btn" id="btn-es" onclick="setLang('es')">ES</button>
+</div>
+<div class="jump-dropdown" id="jumpDrop">
+<div class="jump-trigger" onclick="document.getElementById('jumpDrop').classList.toggle('open')">
+<span data-en="Jump to Section" data-es="Ir a Sección">Jump to Section</span>
+<span class="arrow">▼</span>
+</div>
+<div class="jump-menu">
+<a href="#flooring" onclick="closeJump()" data-en="01 · Flooring" data-es="01 · Pisos">01 · Flooring</a>
+<a href="#shower" onclick="closeJump()" data-en="02 · Shower" data-es="02 · Ducha">02 · Shower</a>
+<a href="#tub" onclick="closeJump()" data-en="03 · Bathtub" data-es="03 · Bañera">03 · Bathtub</a>
+<a href="#vanity" onclick="closeJump()" data-en="04 · Vanity" data-es="04 · Tocador">04 · Vanity</a>
+<a href="#doors" onclick="closeJump()" data-en="05 · Doors" data-es="05 · Puertas">05 · Doors</a>
+<a href="#lighting" onclick="closeJump()" data-en="06 · Lighting" data-es="06 · Iluminación">06 · Lighting</a>
+<a href="#accessories" onclick="closeJump()" data-en="07 · Accessories" data-es="07 · Accesorios">07 · Accessories</a>
+<a href="#custom-section" onclick="closeJump()" data-en="⊕ Custom Items" data-es="⊕ Partidas Personalizadas">⊕ Custom Items</a>
+<a href="#grand-total" onclick="closeJump()" data-en="↓ Grand Total" data-es="↓ Total General">↓ Grand Total</a>
+</div>
+</div>
+<button class="nav-btn btn-add" onclick="addCustomItem()">+ <span data-en="Add Line Item" data-es="Agregar Partida">Add Line Item</span></button>
+<button class="nav-btn btn-dl" onclick="downloadPDF()">↓ <span data-en="Download PDF" data-es="Descargar PDF">Download PDF</span></button>
+</div>
+</nav>
+<main>
+<section class="section" id="flooring">
+<div class="section-header"><span class="num">01</span><h2 data-en="Flooring" data-es="Pisos">Flooring</h2></div>
+<div class="item-grid">
+<div class="item-card">
+<div class="card-material"><div>
+<div class="zone-label">Material</div>
+<div class="item-name" data-en="Large Format Black Hexagon Tile — Full Bathroom Floor" data-es="Baldosa Hexagonal Negra — Piso Completo">Large Format Black Hexagon Tile — Full Bathroom Floor</div>
+<div class="item-spec">10 in. Black Hex Porcelain · Matte finish · Floor &amp; wall rated</div>
+<div class="item-meta"><span class="retailer-badge">The Tile Shop</span><a class="item-link" href="https://www.tileshop.com/products/black-hex-porcelain-wall-and-floor-tile-10-in-680185" target="_blank">View Product <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg></a></div>
+</div></div>
+<div class="card-scope"><div class="scope-label" data-en="Scope of Work" data-es="Alcance del Trabajo">Scope of Work</div><ul class="scope-tasks">
+<li data-en="Demo existing floor finish down to subfloor; inspect and level substrate" data-es="Demoler el piso existente hasta el subsuelo; inspeccionar y nivelar">Demo existing floor finish down to subfloor; inspect and level substrate</li>
+<li data-en="Install cement backer board or uncoupling membrane (Schluter Ditra recommended)" data-es="Instalar membrana de desacople (Schluter Ditra recomendado)">Install cement backer board or uncoupling membrane (Schluter Ditra recommended)</li>
+<li data-en="Lay large hexagon tile in full-field pattern across entire bathroom floor" data-es="Colocar baldosa hexagonal en patrón completo en todo el piso">Lay large hexagon tile in full-field pattern across entire bathroom floor</li>
+<li data-en="Apply dark grout; seal upon completion and provide final clean" data-es="Aplicar lechada oscura; sellar al terminar y limpiar">Apply dark grout; seal upon completion and provide final clean</li>
+</ul></div>
+<div class="card-pricing"><div class="pricing-label" data-en="Material Pricing" data-es="Precio de Material">Material Pricing</div>
+<div class="pricing-row"><div class="pricing-row-label" data-en="Tile (material)" data-es="Baldosa (material)">Tile (material)</div><input class="price-input" type="number" placeholder="0" min="0" step="1" data-role="qty" oninput="calcRow(this)"><select class="unit-select" onchange="calcRow(this.parentElement.querySelector('[data-role=qty]'))"><option>SF</option><option>EA</option><option>LS</option></select><input class="price-input" type="number" placeholder="$/SF" min="0" step="0.01" data-role="unit" oninput="calcRow(this)"><div class="price-total" data-role="total">$0.00</div></div>
+<div class="pricing-row labor-row"><div class="pricing-row-label labor" data-en="↳ Demo &amp; Install (labor)" data-es="↳ Demolición e Instalación (mano de obra)">↳ Demo &amp; Install (labor)</div><input class="price-input" type="number" placeholder="0" min="0" step="1" data-role="qty" oninput="calcRow(this)"><select class="unit-select" onchange="calcRow(this.parentElement.querySelector('[data-role=qty]'))"><option>SF</option><option>HR</option><option>LS</option></select><input class="price-input" type="number" placeholder="$/SF" min="0" step="0.01" data-role="unit" oninput="calcRow(this)"><div class="price-total" data-role="total">$0.00</div></div>
+</div></div>
+</div></section>
+<section class="section" id="shower">
+<div class="section-header"><span class="num">02</span><h2 data-en="Shower" data-es="Ducha">Shower</h2></div>
+<div class="item-grid">
+<div class="item-card">
+<div class="card-material"><div>
+<div class="zone-label">Material</div>
+<div class="item-name" data-en="Large Format Light Gray/White Stone-Look Wall Tile — Floor to Ceiling" data-es="Baldosa Mural Gran Formato Gris/Blanco — Piso a Techo">Large Format Light Gray/White Stone-Look Wall Tile — Floor to Ceiling</div>
+<div class="item-spec">24×48 in. porcelain · Marble/stone look · Rectified edges</div>
+<div class="item-meta"><span class="retailer-badge">Floor &amp; Decor</span><a class="item-link" href="https://www.flooranddecor.com/large-format-tile-tile" target="_blank">Shop Tile <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg></a></div>
+</div></div>
+<div class="card-scope"><div class="scope-label" data-en="Scope of Work" data-es="Alcance del Trabajo">Scope of Work</div><ul class="scope-tasks">
+<li data-en="Waterproof all shower wall surfaces with membrane system (Schluter Kerdi or RedGard)" data-es="Impermeabilizar todas las paredes con membrana (Schluter Kerdi o RedGard)">Waterproof all shower wall surfaces with membrane system (Schluter Kerdi or RedGard)</li>
+<li data-en="Install 24×48 stone-look tile floor to ceiling on all three shower walls" data-es="Instalar baldosa 24×48 de piso a techo en las tres paredes">Install 24×48 stone-look tile floor to ceiling on all three shower walls</li>
+<li data-en="Back-butter each tile for full coverage; apply 1/16 in. grout joint; seal" data-es="Aplicar mortero al dorso; junta de 1/16 pulg.; sellar">Back-butter each tile for full coverage; apply 1/16 in. grout joint; seal</li>
+</ul></div>
+<div class="card-pricing"><div class="pricing-label" data-en="Material Pricing" data-es="Precio de Material">Material Pricing</div>
+<div class="pricing-row"><div class="pricing-row-label" data-en="Shower wall tile" data-es="Baldosa de pared">Shower wall tile</div><input class="price-input" type="number" placeholder="0" min="0" step="1" data-role="qty" oninput="calcRow(this)"><select class="unit-select" onchange="calcRow(this.parentElement.querySelector('[data-role=qty]'))"><option>SF</option><option>LS</option></select><input class="price-input" type="number" placeholder="$/SF" min="0" step="0.01" data-role="unit" oninput="calcRow(this)"><div class="price-total" data-role="total">$0.00</div></div>
+<div class="pricing-row labor-row"><div class="pricing-row-label labor" data-en="↳ Waterproofing &amp; Install (labor)" data-es="↳ Impermeabilización e Instalación (mano de obra)">↳ Waterproofing &amp; Install (labor)</div><input class="price-input" type="number" placeholder="0" min="0" step="1" data-role="qty" oninput="calcRow(this)"><select class="unit-select" onchange="calcRow(this.parentElement.querySelector('[data-role=qty]'))"><option>SF</option><option>HR</option><option>LS</option></select><input class="price-input" type="number" placeholder="$/SF" min="0" step="0.01" data-role="unit" oninput="calcRow(this)"><div class="price-total" data-role="total">$0.00</div></div>
+</div></div>
+<div class="item-card">
+<div class="card-material"><div>
+<div class="zone-label">Material</div>
+<div class="item-name" data-en="Black Tile — Shower Floor, Curb &amp; Bench" data-es="Baldosa Negra — Piso, Umbral y Banco de Ducha">Black Tile — Shower Floor, Curb &amp; Bench</div>
+<div class="item-spec">2 in. Black Matte Hexagon Mosaic · Slip-resistant · Shower floor rated</div>
+<div class="item-meta"><span class="retailer-badge">Floor &amp; Decor</span><a class="item-link" href="https://www.flooranddecor.com/porcelain-tile/black-matte-hexagon-porcelain-mosaic-100782390.html" target="_blank">View Product <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg></a></div>
+</div></div>
+<div class="card-scope"><div class="scope-label" data-en="Scope of Work" data-es="Alcance del Trabajo">Scope of Work</div><ul class="scope-tasks">
+<li data-en="Install drain with pre-sloped shower pan; set black hex mosaic with ¼ in./ft slope" data-es="Instalar desagüe con base pre-inclinada; colocar mosaico negro con pendiente">Install drain with pre-sloped shower pan; set black hex mosaic with ¼ in./ft slope</li>
+<li data-en="Build tile curb at shower entry; tile bench top and face to match" data-es="Construir umbral de baldosa; cubrir banco a juego">Build tile curb at shower entry; tile bench top and face to match</li>
+<li data-en="Grout and seal all shower floor, curb, and bench surfaces" data-es="Aplicar lechada y sellar piso, umbral y banco">Grout and seal all shower floor, curb, and bench surfaces</li>
+</ul></div>
+<div class="card-pricing"><div class="pricing-label" data-en="Material Pricing" data-es="Precio de Material">Material Pricing</div>
+<div class="pricing-row"><div class="pricing-row-label" data-en="Mosaic tile (floor/curb/bench)" data-es="Mosaico (piso/umbral/banco)">Mosaic tile (floor/curb/bench)</div><input class="price-input" type="number" placeholder="0" min="0" step="1" data-role="qty" oninput="calcRow(this)"><select class="unit-select" onchange="calcRow(this.parentElement.querySelector('[data-role=qty]'))"><option>SF</option><option>LS</option></select><input class="price-input" type="number" placeholder="$/SF" min="0" step="0.01" data-role="unit" oninput="calcRow(this)"><div class="price-total" data-role="total">$0.00</div></div>
+<div class="pricing-row labor-row"><div class="pricing-row-label labor" data-en="↳ Shower floor/curb/bench (labor)" data-es="↳ Piso/umbral/banco (mano de obra)">↳ Shower floor/curb/bench (labor)</div><input class="price-input" type="number" placeholder="0" min="0" step="1" data-role="qty" oninput="calcRow(this)"><select class="unit-select" onchange="calcRow(this.parentElement.querySelector('[data-role=qty]'))"><option>SF</option><option>HR</option><option>LS</option></select><input class="price-input" type="number" placeholder="$/HR" min="0" step="0.01" data-role="unit" oninput="calcRow(this)"><div class="price-total" data-role="total">$0.00</div></div>
+</div></div>
+<div class="item-card">
+<div class="card-material"><div>
+<div class="zone-label">Material</div>
+<div class="item-name" data-en="Frameless Glass Enclosure — 3 Panel · Brass Hardware" data-es="Cabina de Vidrio sin Marco — 3 Paneles · Herrajes Latón">Frameless Glass Enclosure — 3 Panel · Brass Hardware</div>
+<div class="item-spec">Glass Warehouse Illume · Satin Brass · 3/8 in. tempered glass · Custom widths</div>
+<div class="item-meta"><span class="retailer-badge">Lowe's</span><a class="item-link" href="https://www.lowes.com/pd/Glass-Warehouse-78-in-x-60-in-Frameless-Shower-Door-Wall-Hinge-Satin-Brass/5001565383" target="_blank">View Product <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg></a></div>
+</div><span class="note-badge" data-en="Custom sizing" data-es="Medida personalizada">Custom sizing</span></div>
+<div class="card-scope"><div class="scope-label" data-en="Scope of Work" data-es="Alcance del Trabajo">Scope of Work</div><ul class="scope-tasks">
+<li data-en="Confirm final shower opening dimensions post-tile before ordering glass" data-es="Confirmar dimensiones finales después del azulejo antes de pedir el vidrio">Confirm final shower opening dimensions post-tile before ordering glass</li>
+<li data-en="Install fixed panels plumb and level; hang door with brass pivot hinges" data-es="Instalar paneles fijos a plomo; colgar puerta con bisagras de latón">Install fixed panels plumb and level; hang door with brass pivot hinges</li>
+<li data-en="Install brass handle, clips, support bar; silicone all glass-to-tile transitions" data-es="Instalar manija, clips, barra de soporte; silicona en bordes vidrio-baldosa">Install brass handle, clips, support bar; silicone all glass-to-tile transitions</li>
+</ul></div>
+<div class="card-pricing"><div class="pricing-label" data-en="Material Pricing" data-es="Precio de Material">Material Pricing</div>
+<div class="pricing-row"><div class="pricing-row-label" data-en="Frameless glass enclosure" data-es="Cabina de vidrio sin marco">Frameless glass enclosure</div><input class="price-input" type="number" placeholder="1" min="0" step="1" data-role="qty" oninput="calcRow(this)"><select class="unit-select" onchange="calcRow(this.parentElement.querySelector('[data-role=qty]'))"><option>LS</option><option>EA</option></select><input class="price-input" type="number" placeholder="$" min="0" step="0.01" data-role="unit" oninput="calcRow(this)"><div class="price-total" data-role="total">$0.00</div></div>
+<div class="pricing-row labor-row"><div class="pricing-row-label labor" data-en="↳ Glass installation (labor)" data-es="↳ Instalación de vidrio (mano de obra)">↳ Glass installation (labor)</div><input class="price-input" type="number" placeholder="0" min="0" step="1" data-role="qty" oninput="calcRow(this)"><select class="unit-select" onchange="calcRow(this.parentElement.querySelector('[data-role=qty]'))"><option>HR</option><option>LS</option></select><input class="price-input" type="number" placeholder="$/HR" min="0" step="0.01" data-role="unit" oninput="calcRow(this)"><div class="price-total" data-role="total">$0.00</div></div>
+</div></div>
+<div class="item-card">
+<div class="card-material"><div>
+<div class="zone-label">Material</div>
+<div class="item-name" data-en="Ceiling-Mount Rain Head — Brass" data-es="Cabezal de Lluvia de Techo — Latón">Ceiling-Mount Rain Head — Brass</div>
+<div class="item-spec">Signature Hardware brushed gold · 10–12 in. round · Solid brass</div>
+<div class="item-meta"><span class="retailer-badge">Signature Hardware</span><a class="item-link" href="https://www.signaturehardware.com/showers/ceiling-shower-heads" target="_blank">Shop <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg></a></div>
+</div></div>
+<div class="card-scope"><div class="scope-label" data-en="Scope of Work" data-es="Alcance del Trabajo">Scope of Work</div><ul class="scope-tasks">
+<li data-en="Rough-in ceiling supply line during framing; confirm location before tile" data-es="Preparar tubería en techo durante enmarcado; confirmar antes del azulejo">Rough-in ceiling supply line during framing; confirm location before tile</li>
+<li data-en="Install brass ceiling arm and rain head; connect to volume control valve" data-es="Instalar brazo y cabezal de latón; conectar a válvula de control">Install brass ceiling arm and rain head; connect to volume control valve</li>
+</ul></div>
+<div class="card-pricing"><div class="pricing-label" data-en="Material Pricing" data-es="Precio de Material">Material Pricing</div>
+<div class="pricing-row"><div class="pricing-row-label" data-en="Ceiling rain head (brass)" data-es="Cabezal de lluvia de techo (latón)">Ceiling rain head (brass)</div><input class="price-input" type="number" placeholder="1" min="0" step="1" data-role="qty" oninput="calcRow(this)"><select class="unit-select" onchange="calcRow(this.parentElement.querySelector('[data-role=qty]'))"><option>EA</option><option>LS</option></select><input class="price-input" type="number" placeholder="$" min="0" step="0.01" data-role="unit" oninput="calcRow(this)"><div class="price-total" data-role="total">$0.00</div></div>
+<div class="pricing-row labor-row"><div class="pricing-row-label labor" data-en="↳ Rough-in &amp; install (labor)" data-es="↳ Obra gruesa e instalación (mano de obra)">↳ Rough-in &amp; install (labor)</div><input class="price-input" type="number" placeholder="0" min="0" step="1" data-role="qty" oninput="calcRow(this)"><select class="unit-select" onchange="calcRow(this.parentElement.querySelector('[data-role=qty]'))"><option>HR</option><option>LS</option></select><input class="price-input" type="number" placeholder="$/HR" min="0" step="0.01" data-role="unit" oninput="calcRow(this)"><div class="price-total" data-role="total">$0.00</div></div>
+</div></div>
+<div class="item-card">
+<div class="card-material"><div>
+<div class="zone-label">Material</div>
+<div class="item-name" data-en="Handheld Shower with Slide Bar + Valve &amp; Trim — Brass" data-es="Ducha Manual + Barra Deslizante + Válvula — Latón">Handheld Shower with Slide Bar + Valve &amp; Trim — Brass</div>
+<div class="item-spec">Kingston Brass brushed gold · Solid brass · Pressure-balance valve</div>
+<div class="item-meta"><span class="retailer-badge">Kingston Brass</span><a class="item-link" href="https://www.kingstonbrass.com" target="_blank">Shop <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg></a></div>
+</div></div>
+<div class="card-scope"><div class="scope-label" data-en="Scope of Work" data-es="Alcance del Trabajo">Scope of Work</div><ul class="scope-tasks">
+<li data-en="Rough-in valve body; pressure test before closing wall" data-es="Preparar cuerpo de válvula; prueba de presión antes de cerrar la pared">Rough-in valve body; pressure test before closing wall</li>
+<li data-en="Set trim plate, handle, and diverter after tile; mount slide bar and handheld" data-es="Instalar placa, manija y desviador después del azulejo; montar barra y ducha manual">Set trim plate, handle, and diverter after tile; mount slide bar and handheld</li>
+</ul></div>
+<div class="card-pricing"><div class="pricing-label" data-en="Material Pricing" data-es="Precio de Material">Material Pricing</div>
+<div class="pricing-row"><div class="pricing-row-label" data-en="Handheld + slide bar + valve/trim" data-es="Manual + barra + válvula/acabados">Handheld + slide bar + valve/trim</div><input class="price-input" type="number" placeholder="1" min="0" step="1" data-role="qty" oninput="calcRow(this)"><select class="unit-select" onchange="calcRow(this.parentElement.querySelector('[data-role=qty]'))"><option>LS</option><option>EA</option></select><input class="price-input" type="number" placeholder="$" min="0" step="0.01" data-role="unit" oninput="calcRow(this)"><div class="price-total" data-role="total">$0.00</div></div>
+<div class="pricing-row labor-row"><div class="pricing-row-label labor" data-en="↳ Valve rough-in &amp; trim-out (labor)" data-es="↳ Obra gruesa y acabados (mano de obra)">↳ Valve rough-in &amp; trim-out (labor)</div><input class="price-input" type="number" placeholder="0" min="0" step="1" data-role="qty" oninput="calcRow(this)"><select class="unit-select" onchange="calcRow(this.parentElement.querySelector('[data-role=qty]'))"><option>HR</option><option>LS</option></select><input class="price-input" type="number" placeholder="$/HR" min="0" step="0.01" data-role="unit" oninput="calcRow(this)"><div class="price-total" data-role="total">$0.00</div></div>
+</div></div>
+</div></section>
+<section class="section" id="tub">
+<div class="section-header"><span class="num">03</span><h2 data-en="Bathtub &amp; Tub Filler" data-es="Bañera y Llenador">Bathtub &amp; Tub Filler</h2></div>
+<div class="item-grid">
+<div class="item-card">
+<div class="card-material"><div>
+<div class="zone-label">Material</div>
+<div class="item-name" data-en="Freestanding Rectangular Soaking Tub — Gloss White" data-es="Bañera Rectangular Independiente — Blanco Brillante">Freestanding Rectangular Soaking Tub — Gloss White</div>
+<div class="item-spec">ADM Bathroom SW-103 · White stone resin · Glossy finish · 55–65 in.</div>
+<div class="item-meta"><span class="retailer-badge">ADM Bathroom</span><a class="item-link" href="https://admbathroom.com/collections/freestanding-bathtubs" target="_blank">Shop <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg></a></div>
+</div><span class="note-badge" data-en="Multiple sizes" data-es="Varios tamaños">Multiple sizes</span></div>
+<div class="card-scope"><div class="scope-label" data-en="Scope of Work" data-es="Alcance del Trabajo">Scope of Work</div><ul class="scope-tasks">
+<li data-en="Rough-in drain location; set tub level; connect drain and overflow; caulk base" data-es="Preparar desagüe; nivelar bañera; conectar desagüe y rebosadero; sellar base">Rough-in drain location; set tub level; connect drain and overflow; caulk base</li>
+</ul></div>
+<div class="card-pricing"><div class="pricing-label" data-en="Material Pricing" data-es="Precio de Material">Material Pricing</div>
+<div class="pricing-row"><div class="pricing-row-label" data-en="Freestanding tub" data-es="Bañera independiente">Freestanding tub</div><input class="price-input" type="number" placeholder="1" min="0" step="1" data-role="qty" oninput="calcRow(this)"><select class="unit-select" onchange="calcRow(this.parentElement.querySelector('[data-role=qty]'))"><option>EA</option><option>LS</option></select><input class="price-input" type="number" placeholder="$" min="0" step="0.01" data-role="unit" oninput="calcRow(this)"><div class="price-total" data-role="total">$0.00</div></div>
+<div class="pricing-row labor-row"><div class="pricing-row-label labor" data-en="↳ Set tub &amp; connect drain (labor)" data-es="↳ Colocar bañera y conectar desagüe (mano de obra)">↳ Set tub &amp; connect drain (labor)</div><input class="price-input" type="number" placeholder="0" min="0" step="1" data-role="qty" oninput="calcRow(this)"><select class="unit-select" onchange="calcRow(this.parentElement.querySelector('[data-role=qty]'))"><option>HR</option><option>LS</option></select><input class="price-input" type="number" placeholder="$/HR" min="0" step="0.01" data-role="unit" oninput="calcRow(this)"><div class="price-total" data-role="total">$0.00</div></div>
+</div></div>
+<div class="item-card">
+<div class="card-material"><div>
+<div class="zone-label">Material</div>
+<div class="item-name" data-en="Tub Filler Faucet — Brass (Floor Mount)" data-es="Grifo Llenador de Bañera — Latón (Piso)">Tub Filler Faucet — Brass (Floor Mount)</div>
+<div class="item-spec">Signature Hardware Cooper · Floor-mount · Brushed Gold · Solid brass</div>
+<div class="item-meta"><span class="retailer-badge">Signature Hardware</span><a class="item-link" href="https://www.signaturehardware.com/faucets/freestanding-tub-faucets" target="_blank">Shop <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg></a></div>
+</div></div>
+<div class="card-scope"><div class="scope-label" data-en="Scope of Work" data-es="Alcance del Trabajo">Scope of Work</div><ul class="scope-tasks">
+<li data-en="Rough-in supply lines in floor; core through finished tile; set faucet base and connect" data-es="Preparar líneas en piso; perforar baldosa; instalar base y conectar">Rough-in supply lines in floor; core through finished tile; set faucet base and connect</li>
+</ul></div>
+<div class="card-pricing"><div class="pricing-label" data-en="Material Pricing" data-es="Precio de Material">Material Pricing</div>
+<div class="pricing-row"><div class="pricing-row-label" data-en="Floor-mount tub filler (brass)" data-es="Llenador de piso (latón)">Floor-mount tub filler (brass)</div><input class="price-input" type="number" placeholder="1" min="0" step="1" data-role="qty" oninput="calcRow(this)"><select class="unit-select" onchange="calcRow(this.parentElement.querySelector('[data-role=qty]'))"><option>EA</option><option>LS</option></select><input class="price-input" type="number" placeholder="$" min="0" step="0.01" data-role="unit" oninput="calcRow(this)"><div class="price-total" data-role="total">$0.00</div></div>
+<div class="pricing-row labor-row"><div class="pricing-row-label labor" data-en="↳ Floor rough-in &amp; install (labor)" data-es="↳ Obra gruesa e instalación (mano de obra)">↳ Floor rough-in &amp; install (labor)</div><input class="price-input" type="number" placeholder="0" min="0" step="1" data-role="qty" oninput="calcRow(this)"><select class="unit-select" onchange="calcRow(this.parentElement.querySelector('[data-role=qty]'))"><option>HR</option><option>LS</option></select><input class="price-input" type="number" placeholder="$/HR" min="0" step="0.01" data-role="unit" oninput="calcRow(this)"><div class="price-total" data-role="total">$0.00</div></div>
+</div></div>
+</div></section>
+<section class="section" id="vanity">
+<div class="section-header"><span class="num">04</span><h2 data-en="Vanity" data-es="Tocador">Vanity</h2></div>
+<div class="item-grid">
+<div class="item-card">
+<div class="card-material"><div>
+<div class="zone-label">Material</div>
+<div class="item-name" data-en="Double Vanity Cabinet — White Shaker, Floating with LED Toe-Kick" data-es="Gabinete Tocador Doble — Shaker Blanco Flotante con LED">Double Vanity Cabinet — White Shaker, Floating with LED Toe-Kick</div>
+<div class="item-spec">72 in. · Riley &amp; Higgs · Solid wood/plywood · Soft-close hinges</div>
+<div class="item-meta"><span class="retailer-badge">Riley &amp; Higgs</span><a class="item-link" href="https://rileyandhiggs.com/products/72-inch-white-shaker-double-sink-bathroom-vanity-with-drawers" target="_blank">View <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg></a></div>
+</div></div>
+<div class="card-scope"><div class="scope-label" data-en="Scope of Work" data-es="Alcance del Trabajo">Scope of Work</div><ul class="scope-tasks">
+<li data-en="Install wall blocking; hang cabinet level at 32–34 in. AFF; anchor to studs" data-es="Instalar bloqueo; colgar gabinete a nivel; anclar a montantes">Install wall blocking; hang cabinet level at 32–34 in. AFF; anchor to studs</li>
+<li data-en="Install warm white LED strip in toe-kick; connect to dimmer" data-es="Instalar tira LED en zócalo; conectar a regulador">Install warm white LED strip in toe-kick; connect to dimmer</li>
+</ul></div>
+<div class="card-pricing"><div class="pricing-label" data-en="Material Pricing" data-es="Precio de Material">Material Pricing</div>
+<div class="pricing-row"><div class="pricing-row-label" data-en="Vanity cabinet set" data-es="Conjunto de gabinete">Vanity cabinet set</div><input class="price-input" type="number" placeholder="1" min="0" step="1" data-role="qty" oninput="calcRow(this)"><select class="unit-select" onchange="calcRow(this.parentElement.querySelector('[data-role=qty]'))"><option>LS</option><option>EA</option></select><input class="price-input" type="number" placeholder="$" min="0" step="0.01" data-role="unit" oninput="calcRow(this)"><div class="price-total" data-role="total">$0.00</div></div>
+<div class="pricing-row labor-row"><div class="pricing-row-label labor" data-en="↳ Assembly, hang &amp; LED (labor)" data-es="↳ Ensamble, colgado y LED (mano de obra)">↳ Assembly, hang &amp; LED (labor)</div><input class="price-input" type="number" placeholder="0" min="0" step="1" data-role="qty" oninput="calcRow(this)"><select class="unit-select" onchange="calcRow(this.parentElement.querySelector('[data-role=qty]'))"><option>HR</option><option>LS</option></select><input class="price-input" type="number" placeholder="$/HR" min="0" step="0.01" data-role="unit" oninput="calcRow(this)"><div class="price-total" data-role="total">$0.00</div></div>
+</div></div>
+<div class="item-card">
+<div class="card-material"><div>
+<div class="zone-label">Material · Local Fabrication</div>
+<div class="item-name" data-en="Gray/Charcoal Quartz Countertop + 2 Undermount Sinks" data-es="Encimera de Cuarzo Gris + 2 Lavabos Empotrados">Gray/Charcoal Quartz Countertop + 2 Undermount Sinks</div>
+<div class="item-spec">Custom quartz · Local KC fabricator · Kohler Verticyl or similar sinks</div>
+<div class="item-meta"><span class="retailer-badge">Home Depot</span><a class="item-link" href="https://www.homedepot.com/b/Bath-Bathroom-Sinks/Undermount/Rectangular/N-5yc1vZcd0bZ1z0oijzZ1z0n9mt" target="_blank">Sinks <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg></a></div>
+</div><span class="note-badge" data-en="Local fab." data-es="Fab. local">Local fab.</span></div>
+<div class="card-scope"><div class="scope-label" data-en="Scope of Work" data-es="Alcance del Trabajo">Scope of Work</div><ul class="scope-tasks">
+<li data-en="Template from installed cabinet; CNC cut by fabricator; epoxy-bond sinks; set top" data-es="Tomar plantilla; corte CNC; pegar lavabos; instalar encimera">Template from installed cabinet; CNC cut by fabricator; epoxy-bond sinks; set top</li>
+</ul></div>
+<div class="card-pricing"><div class="pricing-label" data-en="Material Pricing" data-es="Precio de Material">Material Pricing</div>
+<div class="pricing-row"><div class="pricing-row-label" data-en="Quartz countertop" data-es="Encimera de cuarzo">Quartz countertop</div><input class="price-input" type="number" placeholder="0" min="0" step="1" data-role="qty" oninput="calcRow(this)"><select class="unit-select" onchange="calcRow(this.parentElement.querySelector('[data-role=qty]'))"><option>SF</option><option>LS</option></select><input class="price-input" type="number" placeholder="$/SF" min="0" step="0.01" data-role="unit" oninput="calcRow(this)"><div class="price-total" data-role="total">$0.00</div></div>
+<div class="pricing-row"><div class="pricing-row-label" data-en="Undermount sinks (2)" data-es="Lavabos empotrados (2)">Undermount sinks (2)</div><input class="price-input" type="number" placeholder="2" min="0" step="1" data-role="qty" oninput="calcRow(this)"><select class="unit-select" onchange="calcRow(this.parentElement.querySelector('[data-role=qty]'))"><option>EA</option><option>LS</option></select><input class="price-input" type="number" placeholder="$/EA" min="0" step="0.01" data-role="unit" oninput="calcRow(this)"><div class="price-total" data-role="total">$0.00</div></div>
+<div class="pricing-row labor-row"><div class="pricing-row-label labor" data-en="↳ Template, fab &amp; set (labor)" data-es="↳ Plantilla, fabricación y colocación (mano de obra)">↳ Template, fab &amp; set (labor)</div><input class="price-input" type="number" placeholder="1" min="0" step="1" data-role="qty" oninput="calcRow(this)"><select class="unit-select" onchange="calcRow(this.parentElement.querySelector('[data-role=qty]'))"><option>LS</option><option>HR</option></select><input class="price-input" type="number" placeholder="$" min="0" step="0.01" data-role="unit" oninput="calcRow(this)"><div class="price-total" data-role="total">$0.00</div></div>
+</div></div>
+<div class="item-card">
+<div class="card-material"><div>
+<div class="zone-label">Material</div>
+<div class="item-name" data-en="2 Widespread Faucets — Brass" data-es="2 Grifos Extendidos — Latón">2 Widespread Faucets — Brass</div>
+<div class="item-spec">Kingston Brass 8 in. widespread · Brushed Brass · Solid brass body</div>
+<div class="item-meta"><span class="retailer-badge">Kingston Brass</span><a class="item-link" href="https://www.kingstonbrass.com/collections/widespread-bathroom-faucets" target="_blank">Shop <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg></a></div>
+</div><span class="note-badge" data-en="Qty: 2" data-es="Cant.: 2">Qty: 2</span></div>
+<div class="card-scope"><div class="scope-label" data-en="Scope of Work" data-es="Alcance del Trabajo">Scope of Work</div><ul class="scope-tasks">
+<li data-en="Drill faucet holes; drop-in body and handles; connect supply lines and drains" data-es="Perforar orificios; instalar grifo; conectar líneas y desagües">Drill faucet holes; drop-in body and handles; connect supply lines and drains</li>
+</ul></div>
+<div class="card-pricing"><div class="pricing-label" data-en="Material Pricing" data-es="Precio de Material">Material Pricing</div>
+<div class="pricing-row"><div class="pricing-row-label" data-en="Widespread faucets (brass)" data-es="Grifos extendidos (latón)">Widespread faucets (brass)</div><input class="price-input" type="number" placeholder="2" min="0" step="1" data-role="qty" oninput="calcRow(this)"><select class="unit-select" onchange="calcRow(this.parentElement.querySelector('[data-role=qty]'))"><option>EA</option><option>LS</option></select><input class="price-input" type="number" placeholder="$/EA" min="0" step="0.01" data-role="unit" oninput="calcRow(this)"><div class="price-total" data-role="total">$0.00</div></div>
+<div class="pricing-row labor-row"><div class="pricing-row-label labor" data-en="↳ Faucet &amp; drain install (labor)" data-es="↳ Instalación (mano de obra)">↳ Faucet &amp; drain install (labor)</div><input class="price-input" type="number" placeholder="0" min="0" step="1" data-role="qty" oninput="calcRow(this)"><select class="unit-select" onchange="calcRow(this.parentElement.querySelector('[data-role=qty]'))"><option>HR</option><option>LS</option></select><input class="price-input" type="number" placeholder="$/HR" min="0" step="0.01" data-role="unit" oninput="calcRow(this)"><div class="price-total" data-role="total">$0.00</div></div>
+</div></div>
+<div class="item-card">
+<div class="card-material"><div>
+<div class="zone-label">Material</div>
+<div class="item-name" data-en="2 Rectangular Vanity Mirrors" data-es="2 Espejos Rectangulares">2 Rectangular Vanity Mirrors</div>
+<div class="item-spec">Frameless · 24–30 in. W × 36 in. H recommended</div>
+<div class="item-meta"><span class="retailer-badge">Wayfair</span><a class="item-link" href="https://www.wayfair.com/home-improvement/sb1/rectangular-bathroom-mirrors-c215103-a58903~211083.html" target="_blank">Shop <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg></a></div>
+</div><span class="note-badge" data-en="Qty: 2" data-es="Cant.: 2">Qty: 2</span></div>
+<div class="card-scope"><div class="scope-label" data-en="Scope of Work" data-es="Alcance del Trabajo">Scope of Work</div><ul class="scope-tasks">
+<li data-en="Mark centerlines; install mounting clips anchored to tile; hang level and plumb" data-es="Marcar centros; instalar clips; colgar a nivel y a plomo">Mark centerlines; install mounting clips anchored to tile; hang level and plumb</li>
+</ul></div>
+<div class="card-pricing"><div class="pricing-label" data-en="Material Pricing" data-es="Precio de Material">Material Pricing</div>
+<div class="pricing-row"><div class="pricing-row-label" data-en="Rectangular mirrors" data-es="Espejos rectangulares">Rectangular mirrors</div><input class="price-input" type="number" placeholder="2" min="0" step="1" data-role="qty" oninput="calcRow(this)"><select class="unit-select" onchange="calcRow(this.parentElement.querySelector('[data-role=qty]'))"><option>EA</option><option>LS</option></select><input class="price-input" type="number" placeholder="$/EA" min="0" step="0.01" data-role="unit" oninput="calcRow(this)"><div class="price-total" data-role="total">$0.00</div></div>
+<div class="pricing-row labor-row"><div class="pricing-row-label labor" data-en="↳ Mirror hang (labor)" data-es="↳ Colgado (mano de obra)">↳ Mirror hang (labor)</div><input class="price-input" type="number" placeholder="0" min="0" step="1" data-role="qty" oninput="calcRow(this)"><select class="unit-select" onchange="calcRow(this.parentElement.querySelector('[data-role=qty]'))"><option>HR</option><option>LS</option></select><input class="price-input" type="number" placeholder="$/HR" min="0" step="0.01" data-role="unit" oninput="calcRow(this)"><div class="price-total" data-role="total">$0.00</div></div>
+</div></div>
+<div class="item-card">
+<div class="card-material"><div>
+<div class="zone-label">Material</div>
+<div class="item-name" data-en="Recessed Medicine Cabinet — Center, Decorative Molded Frame" data-es="Botiquín Empotrado — Marco Decorativo">Recessed Medicine Cabinet — Center, Decorative Molded Frame</div>
+<div class="item-spec">Fox Hollow Furnishings · Picture-frame surround · Glass shelves · Recessed</div>
+<div class="item-meta"><span class="retailer-badge">Fox Hollow Furnishings</span><a class="item-link" href="https://www.concealedcabinet.com/" target="_blank">Shop <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg></a></div>
+</div></div>
+<div class="card-scope"><div class="scope-label" data-en="Scope of Work" data-es="Alcance del Trabajo">Scope of Work</div><ul class="scope-tasks">
+<li data-en="Frame opening during rough-in; cut tile opening; set cabinet; apply molded frame trim" data-es="Enmarcar apertura; cortar baldosa; instalar botiquín; aplicar marco moldeado">Frame opening during rough-in; cut tile opening; set cabinet; apply molded frame trim</li>
+</ul></div>
+<div class="card-pricing"><div class="pricing-label" data-en="Material Pricing" data-es="Precio de Material">Material Pricing</div>
+<div class="pricing-row"><div class="pricing-row-label" data-en="Recessed medicine cabinet" data-es="Botiquín empotrado">Recessed medicine cabinet</div><input class="price-input" type="number" placeholder="1" min="0" step="1" data-role="qty" oninput="calcRow(this)"><select class="unit-select" onchange="calcRow(this.parentElement.querySelector('[data-role=qty]'))"><option>EA</option><option>LS</option></select><input class="price-input" type="number" placeholder="$" min="0" step="0.01" data-role="unit" oninput="calcRow(this)"><div class="price-total" data-role="total">$0.00</div></div>
+<div class="pricing-row labor-row"><div class="pricing-row-label labor" data-en="↳ Frame, set &amp; trim (labor)" data-es="↳ Enmarcado y colocación (mano de obra)">↳ Frame, set &amp; trim (labor)</div><input class="price-input" type="number" placeholder="0" min="0" step="1" data-role="qty" oninput="calcRow(this)"><select class="unit-select" onchange="calcRow(this.parentElement.querySelector('[data-role=qty]'))"><option>HR</option><option>LS</option></select><input class="price-input" type="number" placeholder="$/HR" min="0" step="0.01" data-role="unit" oninput="calcRow(this)"><div class="price-total" data-role="total">$0.00</div></div>
+</div></div>
+</div></section>
+<section class="section" id="doors">
+<div class="section-header"><span class="num">05</span><h2 data-en="Doors" data-es="Puertas">Doors</h2></div>
+<div class="item-grid">
+<div class="item-card">
+<div class="card-material"><div>
+<div class="zone-label">Material</div>
+<div class="item-name" data-en="3 Interior Doors — Dark Charcoal, 5-Panel Horizontal" data-es="3 Puertas Interiores — Carbón Oscuro, 5 Paneles">3 Interior Doors — Dark Charcoal, 5-Panel Horizontal</div>
+<div class="item-spec">Home Depot prehung · Charcoal Gray · White painted casings · 30–36 in.</div>
+<div class="item-meta"><span class="retailer-badge">Home Depot</span><a class="item-link" href="https://homedepot.com/b/Doors-Windows-Interior-Closet-Doors-Prehung-Doors/5-Panel/N-5yc1vZc5ijZ1z0scnt" target="_blank">Shop <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg></a></div>
+</div><span class="note-badge" data-en="Qty: 3" data-es="Cant.: 3">Qty: 3</span></div>
+<div class="card-scope"><div class="scope-label" data-en="Scope of Work" data-es="Alcance del Trabajo">Scope of Work</div><ul class="scope-tasks">
+<li data-en="Demo existing doors and casings; install prehung units plumb and level; install white MDF casings; install matte black lever hardware" data-es="Demoler puertas existentes; instalar unidades prehung; instalar molduras blancas; instalar herrajes negro mate">Demo existing doors and casings; install prehung units plumb and level; install white MDF casings; install matte black lever hardware</li>
+</ul></div>
+<div class="card-pricing"><div class="pricing-label" data-en="Material Pricing" data-es="Precio de Material">Material Pricing</div>
+<div class="pricing-row"><div class="pricing-row-label" data-en="Interior doors (prehung)" data-es="Puertas interiores (prehung)">Interior doors (prehung)</div><input class="price-input" type="number" placeholder="3" min="0" step="1" data-role="qty" oninput="calcRow(this)"><select class="unit-select" onchange="calcRow(this.parentElement.querySelector('[data-role=qty]'))"><option>EA</option><option>LS</option></select><input class="price-input" type="number" placeholder="$/EA" min="0" step="0.01" data-role="unit" oninput="calcRow(this)"><div class="price-total" data-role="total">$0.00</div></div>
+<div class="pricing-row"><div class="pricing-row-label" data-en="Matte black lever hardware" data-es="Herrajes negro mate">Matte black lever hardware</div><input class="price-input" type="number" placeholder="3" min="0" step="1" data-role="qty" oninput="calcRow(this)"><select class="unit-select" onchange="calcRow(this.parentElement.querySelector('[data-role=qty]'))"><option>EA</option><option>LS</option></select><input class="price-input" type="number" placeholder="$/EA" min="0" step="0.01" data-role="unit" oninput="calcRow(this)"><div class="price-total" data-role="total">$0.00</div></div>
+<div class="pricing-row labor-row"><div class="pricing-row-label labor" data-en="↳ Demo, hang &amp; case (labor)" data-es="↳ Demolición, colgado y molduras (mano de obra)">↳ Demo, hang &amp; case (labor)</div><input class="price-input" type="number" placeholder="0" min="0" step="1" data-role="qty" oninput="calcRow(this)"><select class="unit-select" onchange="calcRow(this.parentElement.querySelector('[data-role=qty]'))"><option>HR</option><option>LS</option></select><input class="price-input" type="number" placeholder="$/HR" min="0" step="0.01" data-role="unit" oninput="calcRow(this)"><div class="price-total" data-role="total">$0.00</div></div>
+</div></div>
+</div></section>
+<section class="section" id="lighting">
+<div class="section-header"><span class="num">06</span><h2 data-en="Lighting" data-es="Iluminación">Lighting</h2></div>
+<div class="item-grid">
+<div class="item-card">
+<div class="card-material"><div>
+<div class="zone-label">Material</div>
+<div class="item-name" data-en="Statement Bubble Chandelier over Tub — Brass Canopy, Frosted Globes" data-es="Lámpara de Burbujas — Dosel Latón, Globos Esmerilados">Statement Bubble Chandelier over Tub — Brass Canopy, Frosted Globes</div>
+<div class="item-spec">Farmhouze Light 12-Light Frosted Glass Sputnik · Brushed brass · Dimmable</div>
+<div class="item-meta"><span class="retailer-badge">Farmhouze Light</span><a class="item-link" href="https://farmhouzelight.com/products/modern-frosted-glass-bubble-brass-sputnik-chandelier" target="_blank">View <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg></a></div>
+</div></div>
+<div class="card-scope"><div class="scope-label" data-en="Scope of Work" data-es="Alcance del Trabajo">Scope of Work</div><ul class="scope-tasks">
+<li data-en="Install rated junction box centered over tub; run 15A dimmer circuit; hang chandelier at finish phase" data-es="Instalar caja de conexiones; instalar circuito regulador; colgar lámpara en fase de acabados">Install rated junction box centered over tub; run 15A dimmer circuit; hang chandelier at finish phase</li>
+</ul></div>
+<div class="card-pricing"><div class="pricing-label" data-en="Material Pricing" data-es="Precio de Material">Material Pricing</div>
+<div class="pricing-row"><div class="pricing-row-label" data-en="Bubble chandelier" data-es="Lámpara de burbujas">Bubble chandelier</div><input class="price-input" type="number" placeholder="1" min="0" step="1" data-role="qty" oninput="calcRow(this)"><select class="unit-select" onchange="calcRow(this.parentElement.querySelector('[data-role=qty]'))"><option>EA</option><option>LS</option></select><input class="price-input" type="number" placeholder="$" min="0" step="0.01" data-role="unit" oninput="calcRow(this)"><div class="price-total" data-role="total">$0.00</div></div>
+<div class="pricing-row labor-row"><div class="pricing-row-label labor" data-en="↳ Electrical &amp; hang (labor)" data-es="↳ Eléctrico y colgado (mano de obra)">↳ Electrical &amp; hang (labor)</div><input class="price-input" type="number" placeholder="0" min="0" step="1" data-role="qty" oninput="calcRow(this)"><select class="unit-select" onchange="calcRow(this.parentElement.querySelector('[data-role=qty]'))"><option>HR</option><option>LS</option></select><input class="price-input" type="number" placeholder="$/HR" min="0" step="0.01" data-role="unit" oninput="calcRow(this)"><div class="price-total" data-role="total">$0.00</div></div>
+</div></div>
+<div class="item-card">
+<div class="card-material"><div>
+<div class="zone-label">Material</div>
+<div class="item-name" data-en="4 Tall Tubular Vertical Sconces — Brass (Vanity)" data-es="4 Apliques Tubulares — Latón (Tocador)">4 Tall Tubular Vertical Sconces — Brass (Vanity)</div>
+<div class="item-spec">Peared Creation Model No. 1210 · Raw Brass · 15.5 in. H · E26 · UL listed</div>
+<div class="item-meta"><span class="retailer-badge">Peared Creation</span><a class="item-link" href="https://www.pearedcreation.com/products/tube-vanity-art-deco-vanity-art-deco-sconce-bathroom-light-brass-vanity-light-fixture-vanity-light-modern-lighting" target="_blank">View <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg></a></div>
+</div><span class="note-badge" data-en="Qty: 4" data-es="Cant.: 4">Qty: 4</span></div>
+<div class="card-scope"><div class="scope-label" data-en="Scope of Work" data-es="Alcance del Trabajo">Scope of Work</div><ul class="scope-tasks">
+<li data-en="Rough-in 4 sconce boxes; wire to dimmer circuit; set sconces after tile and paint" data-es="Preparar 4 cajas; conectar a regulador; instalar apliques después de baldosa y pintura">Rough-in 4 sconce boxes; wire to dimmer circuit; set sconces after tile and paint</li>
+</ul></div>
+<div class="card-pricing"><div class="pricing-label" data-en="Material Pricing" data-es="Precio de Material">Material Pricing</div>
+<div class="pricing-row"><div class="pricing-row-label" data-en="Tubular brass sconces" data-es="Apliques tubulares de latón">Tubular brass sconces</div><input class="price-input" type="number" placeholder="4" min="0" step="1" data-role="qty" oninput="calcRow(this)"><select class="unit-select" onchange="calcRow(this.parentElement.querySelector('[data-role=qty]'))"><option>EA</option><option>LS</option></select><input class="price-input" type="number" placeholder="$/EA" min="0" step="0.01" data-role="unit" oninput="calcRow(this)"><div class="price-total" data-role="total">$0.00</div></div>
+<div class="pricing-row labor-row"><div class="pricing-row-label labor" data-en="↳ Electrical &amp; install (labor)" data-es="↳ Eléctrico e instalación (mano de obra)">↳ Electrical &amp; install (labor)</div><input class="price-input" type="number" placeholder="0" min="0" step="1" data-role="qty" oninput="calcRow(this)"><select class="unit-select" onchange="calcRow(this.parentElement.querySelector('[data-role=qty]'))"><option>HR</option><option>LS</option></select><input class="price-input" type="number" placeholder="$/HR" min="0" step="0.01" data-role="unit" oninput="calcRow(this)"><div class="price-total" data-role="total">$0.00</div></div>
+</div></div>
+</div></section>
+<section class="section" id="accessories">
+<div class="section-header"><span class="num">07</span><h2 data-en="Accessories" data-es="Accesorios">Accessories</h2></div>
+<div class="item-grid">
+<div class="item-card">
+<div class="card-material"><div>
+<div class="zone-label">Material</div>
+<div class="item-name" data-en="Double Towel Bar — Brass" data-es="Barra Doble para Toallas — Latón">Double Towel Bar — Brass</div>
+<div class="item-spec">Brushed Gold · 24 in. · Signature Hardware</div>
+<div class="item-meta"><span class="retailer-badge">Signature Hardware</span><a class="item-link" href="https://www.signaturehardware.com/bathroom-accessories/towel-bars" target="_blank">Shop <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg></a></div>
+</div></div>
+<div class="card-scope"><div class="scope-label" data-en="Scope of Work" data-es="Alcance del Trabajo">Scope of Work</div><ul class="scope-tasks"><li data-en="Mark at 48 in. AFF; anchor to tile; confirm level" data-es="Marcar a 48 pulg.; anclar a baldosa; confirmar nivel">Mark at 48 in. AFF; anchor to tile; confirm level</li></ul></div>
+<div class="card-pricing"><div class="pricing-label" data-en="Material Pricing" data-es="Precio de Material">Material Pricing</div>
+<div class="pricing-row"><div class="pricing-row-label" data-en="Double towel bar" data-es="Barra doble">Double towel bar</div><input class="price-input" type="number" placeholder="1" min="0" step="1" data-role="qty" oninput="calcRow(this)"><select class="unit-select" onchange="calcRow(this.parentElement.querySelector('[data-role=qty]'))"><option>EA</option><option>LS</option></select><input class="price-input" type="number" placeholder="$" min="0" step="0.01" data-role="unit" oninput="calcRow(this)"><div class="price-total" data-role="total">$0.00</div></div>
+<div class="pricing-row labor-row"><div class="pricing-row-label labor" data-en="↳ Install (labor)" data-es="↳ Instalación (mano de obra)">↳ Install (labor)</div><input class="price-input" type="number" placeholder="0" min="0" step="1" data-role="qty" oninput="calcRow(this)"><select class="unit-select" onchange="calcRow(this.parentElement.querySelector('[data-role=qty]'))"><option>HR</option><option>LS</option></select><input class="price-input" type="number" placeholder="$/HR" min="0" step="0.01" data-role="unit" oninput="calcRow(this)"><div class="price-total" data-role="total">$0.00</div></div>
+</div></div>
+<div class="item-card">
+<div class="card-material"><div>
+<div class="zone-label">Material</div>
+<div class="item-name" data-en="Robe Hook — Brass" data-es="Gancho para Bata — Latón">Robe Hook — Brass</div>
+<div class="item-spec">Brushed Gold · Signature Hardware</div>
+<div class="item-meta"><span class="retailer-badge">Signature Hardware</span><a class="item-link" href="https://www.signaturehardware.com/bathroom-accessories/robe-hooks" target="_blank">Shop <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg></a></div>
+</div></div>
+<div class="card-scope"><div class="scope-label" data-en="Scope of Work" data-es="Alcance del Trabajo">Scope of Work</div><ul class="scope-tasks"><li data-en="Install at 60–66 in. AFF adjacent to shower entry" data-es="Instalar a 60–66 pulg. junto a la entrada de la ducha">Install at 60–66 in. AFF adjacent to shower entry</li></ul></div>
+<div class="card-pricing"><div class="pricing-label" data-en="Material Pricing" data-es="Precio de Material">Material Pricing</div>
+<div class="pricing-row"><div class="pricing-row-label" data-en="Robe hook" data-es="Gancho para bata">Robe hook</div><input class="price-input" type="number" placeholder="1" min="0" step="1" data-role="qty" oninput="calcRow(this)"><select class="unit-select" onchange="calcRow(this.parentElement.querySelector('[data-role=qty]'))"><option>EA</option><option>LS</option></select><input class="price-input" type="number" placeholder="$" min="0" step="0.01" data-role="unit" oninput="calcRow(this)"><div class="price-total" data-role="total">$0.00</div></div>
+<div class="pricing-row labor-row"><div class="pricing-row-label labor" data-en="↳ Install (labor)" data-es="↳ Instalación (mano de obra)">↳ Install (labor)</div><input class="price-input" type="number" placeholder="0" min="0" step="1" data-role="qty" oninput="calcRow(this)"><select class="unit-select" onchange="calcRow(this.parentElement.querySelector('[data-role=qty]'))"><option>HR</option><option>LS</option></select><input class="price-input" type="number" placeholder="$/HR" min="0" step="0.01" data-role="unit" oninput="calcRow(this)"><div class="price-total" data-role="total">$0.00</div></div>
+</div></div>
+<div class="item-card">
+<div class="card-material"><div>
+<div class="zone-label">Material</div>
+<div class="item-name" data-en="Toilet Paper Holder — Brass" data-es="Portarrollos — Latón">Toilet Paper Holder — Brass</div>
+<div class="item-spec">Brushed Gold wall-mount · Signature Hardware</div>
+<div class="item-meta"><span class="retailer-badge">Signature Hardware</span><a class="item-link" href="https://www.signaturehardware.com/bathroom-accessories/toilet-paper-holders" target="_blank">Shop <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg></a></div>
+</div></div>
+<div class="card-scope"><div class="scope-label" data-en="Scope of Work" data-es="Alcance del Trabajo">Scope of Work</div><ul class="scope-tasks"><li data-en="Install at 26 in. AFF, 8–12 in. from toilet centerline per ADA" data-es="Instalar a 26 pulg. sobre el piso, 8–12 pulg. del inodoro según ADA">Install at 26 in. AFF, 8–12 in. from toilet centerline per ADA</li></ul></div>
+<div class="card-pricing"><div class="pricing-label" data-en="Material Pricing" data-es="Precio de Material">Material Pricing</div>
+<div class="pricing-row"><div class="pricing-row-label" data-en="Toilet paper holder" data-es="Portarrollos">Toilet paper holder</div><input class="price-input" type="number" placeholder="1" min="0" step="1" data-role="qty" oninput="calcRow(this)"><select class="unit-select" onchange="calcRow(this.parentElement.querySelector('[data-role=qty]'))"><option>EA</option><option>LS</option></select><input class="price-input" type="number" placeholder="$" min="0" step="0.01" data-role="unit" oninput="calcRow(this)"><div class="price-total" data-role="total">$0.00</div></div>
+<div class="pricing-row labor-row"><div class="pricing-row-label labor" data-en="↳ Install (labor)" data-es="↳ Instalación (mano de obra)">↳ Install (labor)</div><input class="price-input" type="number" placeholder="0" min="0" step="1" data-role="qty" oninput="calcRow(this)"><select class="unit-select" onchange="calcRow(this.parentElement.querySelector('[data-role=qty]'))"><option>HR</option><option>LS</option></select><input class="price-input" type="number" placeholder="$/HR" min="0" step="0.01" data-role="unit" oninput="calcRow(this)"><div class="price-total" data-role="total">$0.00</div></div>
+</div></div>
+</div></section>
+<section class="section" id="custom-section">
+<div class="custom-header"><span class="num" style="color:var(--custom-accent)">+</span><h2 data-en="Custom Line Items" data-es="Partidas Personalizadas">Custom Line Items</h2></div>
+<div id="custom-list"></div>
+<div style="margin-top:12px;text-align:center"><button class="nav-btn btn-add" style="font-size:13px;padding:10px 22px" onclick="addCustomItem()">+ <span data-en="Add Line Item" data-es="Agregar Partida">Add Line Item</span></button></div>
+</section>
+<div class="grand-total-section" id="grand-total">
+<div class="gt-header"><span style="font-size:9px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--brass)" data-en="Summary" data-es="Resumen">Summary</span><h3 data-en="Project Grand Total" data-es="Total General del Proyecto">Project Grand Total</h3></div>
+<div class="gt-body">
+<div class="gt-row"><span class="gt-label" data-en="Total Materials" data-es="Total Materiales">Total Materials</span><span class="gt-val" id="gt-materials">$0.00</span></div>
+<div class="gt-row"><span class="gt-label" data-en="Total Labor" data-es="Total Mano de Obra">Total Labor</span><span class="gt-val" id="gt-labor">$0.00</span></div>
+<div class="gt-row"><span class="gt-label" data-en="Custom Items Total" data-es="Total Partidas Personalizadas">Custom Items Total</span><span class="gt-val" id="gt-custom">$0.00</span></div>
+</div>
+<div class="gt-final"><span class="gt-final-label" data-en="Total Project Estimate" data-es="Estimado Total del Proyecto">Total Project Estimate</span><span class="gt-final-val" id="gt-total">$0.00</span></div>
+</div>
+</main>
+<footer><strong>Ross Bathroom Renovation</strong> · Kansas City, MO</footer>
+<script>
+let currentLang='en';
+const CATS_EN=['Demo / Removal','GC Fee','Permit','Inspection','Design Fee','Contingency','Delivery / Freight','Dumpster / Disposal','Painting','Rough Plumbing','Rough Electrical','Rough Framing','Other'];
+const CATS_ES=['Demolición / Remoción','Honorario CG','Permiso','Inspección','Honorario de Diseño','Contingencia','Entrega / Flete','Contenedor / Desecho','Pintura','Plomería Gruesa','Electricidad Gruesa','Enmarcado Grueso','Otro'];
+function setLang(lang){currentLang=lang;document.getElementById('btn-en').classList.toggle('active',lang==='en');document.getElementById('btn-es').classList.toggle('active',lang==='es');document.querySelectorAll('[data-en]').forEach(el=>{if(el.tagName==='INPUT'||el.tagName==='SELECT')return;const v=el.getAttribute('data-'+lang);if(v!==null)el.innerHTML=v});}
+let customCount=0;
+function addCustomItem(){customCount++;const id='custom-'+customCount;const cats=currentLang==='en'?CATS_EN:CATS_ES;const opts=cats.map(c=>`<option>${c}</option>`).join('');const card=document.createElement('div');card.className='custom-card';card.id=id;card.innerHTML=`<div class="custom-card-top"><div><select class="cat-select" onchange="updateGrandTotal()">${opts}</select><input class="custom-name-input" type="text" placeholder="Line item description..."><input class="custom-desc-input" type="text" placeholder="Notes (optional)" style="margin-top:4px"></div><button class="remove-btn" onclick="removeCustomItem('${id}')">✕</button></div><div class="custom-card-pricing"><div class="pricing-label" style="color:var(--custom-accent)">Pricing</div><div class="custom-pricing-row"><div class="pricing-row-label" style="color:var(--ink-dim);font-size:11.5px">Amount</div><input class="price-input" type="number" placeholder="0" min="0" step="1" data-role="qty" oninput="calcCustomRow(this)"><select class="unit-select" onchange="calcCustomRow(this.parentElement.querySelector('[data-role=qty]'))"><option>LS</option><option>EA</option><option>HR</option><option>SF</option><option>LF</option><option>%</option></select><input class="price-input" type="number" placeholder="$" min="0" step="0.01" data-role="unit" oninput="calcCustomRow(this)"><div class="price-total" data-role="total" style="border-color:var(--custom-border)">$0.00</div></div></div>`;document.getElementById('custom-list').appendChild(card);updateGrandTotal();}
+function removeCustomItem(id){const el=document.getElementById(id);if(el){el.remove();updateGrandTotal();}}
+function calcCustomRow(t){const row=t.closest('.custom-pricing-row');if(!row)return;const q=parseFloat(row.querySelector('[data-role="qty"]').value)||0;const u=parseFloat(row.querySelector('[data-role="unit"]').value)||0;row.querySelector('[data-role="total"]').textContent='$'+(q*u).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});updateGrandTotal();}
+function calcRow(t){const row=t.closest('.pricing-row');if(!row)return;const el=row.querySelector('[data-role="total"]');if(!el)return;const q=parseFloat(row.querySelector('[data-role="qty"]').value)||0;const u=parseFloat(row.querySelector('[data-role="unit"]').value)||0;el.textContent='$'+(q*u).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});updateGrandTotal();}
+function updateGrandTotal(){let mat=0,lab=0,cust=0;const fmt=n=>'$'+n.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});document.querySelectorAll('.item-card .pricing-row').forEach(row=>{const v=parseFloat((row.querySelector('[data-role="total"]')||{}).textContent?.replace(/[$,]/g,''))||0;if(row.classList.contains('labor-row'))lab+=v;else mat+=v;});document.querySelectorAll('.custom-pricing-row [data-role="total"]').forEach(el=>{cust+=parseFloat(el.textContent.replace(/[$,]/g,''))||0;});document.getElementById('gt-materials').textContent=fmt(mat);document.getElementById('gt-labor').textContent=fmt(lab);document.getElementById('gt-custom').textContent=fmt(cust);document.getElementById('gt-total').textContent=fmt(mat+lab+cust);}
+function closeJump(){document.getElementById('jumpDrop').classList.remove('open');}
+document.addEventListener('click',e=>{const d=document.getElementById('jumpDrop');if(d&&!d.contains(e.target))d.classList.remove('open');});
+function downloadPDF(){closeJump();const wasEs=currentLang==='es';if(wasEs)document.querySelectorAll('[data-en]').forEach(el=>{if(el.tagName==='INPUT'||el.tagName==='SELECT')return;const v=el.getAttribute('data-en');if(v!==null)el.innerHTML=v;});setTimeout(()=>{window.print();if(wasEs)setTimeout(()=>setLang('es'),500);},120);}
+</script>
+</body>
+</html>
