@@ -518,3 +518,24 @@ function generateBidPDF(){
 }
 </script></body>
 </html>
+<script>
+// EN/ES TOGGLE FIX
+let currentLang='en';
+function setLang(lang){
+  currentLang=lang;
+  document.getElementById('btn-en').classList.toggle('active',lang==='en');
+  document.getElementById('btn-es').classList.toggle('active',lang==='es');
+  document.querySelectorAll('[data-en]').forEach(el=>{
+    if(el.tagName==='INPUT'||el.tagName==='SELECT'||el.tagName==='TEXTAREA')return;
+    const v=el.getAttribute('data-'+lang);
+    if(v!==null)el.innerHTML=v;
+  });
+  document.querySelectorAll('.cat-select').forEach(sel=>{
+    const CATS_EN=['Demo / Removal','GC Fee','Permit','Inspection','Design Fee','Contingency','Delivery / Freight','Dumpster / Disposal','Painting','Rough Plumbing','Rough Electrical','Rough Framing','Other'];
+    const CATS_ES=['Demolición / Remoción','Honorario CG','Permiso','Inspección','Honorario de Diseño','Contingencia','Entrega / Flete','Contenedor / Desecho','Pintura','Plomería Gruesa','Electricidad Gruesa','Enmarcado Grueso','Otro'];
+    const current=sel.value;
+    sel.innerHTML=(lang==='en'?CATS_EN:CATS_ES).map(c=>`<option>${c}</option>`).join('');
+    sel.value=current;
+  });
+}
+</script>
