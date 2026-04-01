@@ -329,13 +329,9 @@ function setLang(lang){
     if(el.tagName==="INPUT"||el.tagName==="SELECT"||el.tagName==="TEXTAREA") return;
     var v=el.getAttribute("data-"+lang);
     if(v===null) return;
-    if(el.classList.contains("pricing-row-label")){
-      var link=el.querySelector(".mat-link");
-      el.textContent=v;
-      if(link) el.appendChild(link);
-    } else if(el.classList.contains("scope-task-text")){
-      el.textContent=v;
-    } else { el.innerHTML=v; }
+    if(el.classList.contains("pricing-row-label")){var link=el.querySelector(".mat-link");el.textContent=v;if(link)el.appendChild(link);}
+    else if(el.classList.contains("scope-task-text")){el.textContent=v;}
+    else{el.innerHTML=v;}
   });
 } else if(el.classList.contains(‘scope-task-text’)){
 el.textContent=v;
