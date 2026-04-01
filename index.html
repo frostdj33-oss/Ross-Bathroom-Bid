@@ -320,21 +320,23 @@ updateGrandTotal();
 FIX: Capture .mat-link reference BEFORE el.textContent wipes children.
 Original code did querySelector AFTER textContent= which always got null.
 ─────────────────────────────────────────────────────────────────────── */
-let currentLang=‘en’;
+let currentLang="en";
 function setLang(lang){
-currentLang=lang;
-document.getElementById(‘btn-en’).classList.toggle(‘active’,lang===‘en’);
-document.getElementById(‘btn-es’).classList.toggle(‘active’,lang===‘es’);
-// Single loop handles all [data-en] elements
-document.querySelectorAll(’[data-en]’).forEach(function(el){
-if(el.tagName===‘INPUT’||el.tagName===‘SELECT’||el.tagName===‘TEXTAREA’) return;
-var v=el.getAttribute(‘data-’+lang);
-if(v===null) return;
-if(el.classList.contains(‘pricing-row-label’)){
-// FIX: save mat-link ref BEFORE wiping, then re-append
-var link=el.querySelector(’.mat-link’);
-el.textContent=v;
-if(link) el.appendChild(link);
+  currentLang=lang;
+  document.getElementById("btn-en").classList.toggle("active",lang==="en");
+  document.getElementById("btn-es").classList.toggle("active",lang==="es");
+  document.querySelectorAll("[data-en]").forEach(function(el){
+    if(el.tagName==="INPUT"||el.tagName==="SELECT"||el.tagName==="TEXTAREA") return;
+    var v=el.getAttribute("data-"+lang);
+    if(v===null) return;
+    if(el.classList.contains("pricing-row-label")){
+      var link=el.querySelector(".mat-link");
+      el.textContent=v;
+      if(link) el.appendChild(link);
+    } else if(el.classList.contains("scope-task-text")){
+      el.textContent=v;
+    } else { el.innerHTML=v; }
+  });
 } else if(el.classList.contains(‘scope-task-text’)){
 el.textContent=v;
 } else {
