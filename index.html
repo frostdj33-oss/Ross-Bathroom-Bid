@@ -325,25 +325,21 @@ function setLang(lang){
 currentLang=lang;
 document.getElementById(‘btn-en’).classList.toggle(‘active’,lang===‘en’);
 document.getElementById(‘btn-es’).classList.toggle(‘active’,lang===‘es’);
-// Generic elements
-document.querySelectorAll(’[data-en]’).forEach(el=>{
-if(el.tagName===‘INPUT’||el.tagName===‘SELECT’||el.tagName===‘TEXTAREA’)return;
-if(el.classList.contains(‘pricing-row-label’))return;
-if(el.classList.contains(‘scope-task-text’))return;
-const v=el.getAttribute(‘data-’+lang);if(v!==null)el.innerHTML=v;
-});
-// Pricing row labels — capture link FIRST, then restore after wipe
-document.querySelectorAll(’.pricing-row-label[data-en]’).forEach(el=>{
-const v=el.getAttribute(‘data-’+lang);
-if(v!==null){
-const link=el.querySelector(’.mat-link’); // ← grab ref BEFORE destroy
-el.textContent=v;                          // ← wipes all children
-if(link)el.appendChild(link);             // ← re-attach saved ref
+// Single loop handles all [data-en] elements
+document.querySelectorAll(’[data-en]’).forEach(function(el){
+if(el.tagName===‘INPUT’||el.tagName===‘SELECT’||el.tagName===‘TEXTAREA’) return;
+var v=el.getAttribute(‘data-’+lang);
+if(v===null) return;
+if(el.classList.contains(‘pricing-row-label’)){
+// FIX: save mat-link ref BEFORE wiping, then re-append
+var link=el.querySelector(’.mat-link’);
+el.textContent=v;
+if(link) el.appendChild(link);
+} else if(el.classList.contains(‘scope-task-text’)){
+el.textContent=v;
+} else {
+el.innerHTML=v;
 }
-});
-// Scope task text
-document.querySelectorAll(’.scope-task-text[data-en]’).forEach(el=>{
-const v=el.getAttribute(‘data-’+lang);if(v!==null)el.textContent=v;
 });
 }
 function closeJump(){document.getElementById(‘jumpDrop’).classList.remove(‘open’);}
